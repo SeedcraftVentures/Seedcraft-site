@@ -143,16 +143,25 @@ export const ventures = {
   ] as Venture[],
 }
 
+export interface TeamMember {
+  name: string
+  role: string
+  /** local image path (takes precedence) */
+  src?: string
+  /** Unsplash photo id placeholder */
+  photo?: string
+}
+
 export const team = {
   label: 'Who we are',
   title: 'The people behind the pathways',
   sub: 'A small team that builds the real thing, proves it, and stays in for the long run.',
-  // TODO: swap Unsplash placeholders for real photos; confirm names/roles
   members: [
-    { photo: '1507003211169-0a1dd7228f2d', name: 'Andre', role: 'Founder' },
-    { photo: '1494790108377-be9c29b29330', name: 'Partner', role: 'Co-founder' },
+    { src: '/Images/AndreSC.jpg', name: 'Andre Lemaitre', role: 'Founder, Seedcraft Ventures' },
+    { photo: '1494790108377-be9c29b29330', name: 'Ashley Goluoglu', role: 'Founder, Harika Labs, Partner' },
+    // TODO: third member to be confirmed
     { photo: '1500648767791-00dcc994a43e', name: 'Builder', role: 'Product' },
-  ],
+  ] as TeamMember[],
 }
 
 export const partnerships = {

@@ -31,6 +31,7 @@ export function Hero({
   const hostRef = useRef<HTMLDivElement>(null)
   const markRef = useRef<HTMLDivElement>(null)
   const [offset, setOffset] = useState<{ x: number; y: number } | null>(null)
+  const [scale, setScale] = useState(SCALE)
   const [phase, setPhase] = useState<Phase>(reduce ? 'done' : 'measuring')
 
   useLayoutEffect(() => {
@@ -44,6 +45,9 @@ export function Hero({
       x: hr.left + hr.width / 2 - (r.left + r.width / 2),
       y: hr.top + hr.height / 2 - (r.top + r.height / 2),
     })
+    // keep the centred mark inside the viewport on small screens
+    const maxCentre = Math.min(window.innerWidth * 0.72, window.innerHeight * 0.5)
+    setScale(Math.min(SCALE, maxCentre / DOCK_SIZE))
   }, [reduce])
 
   useEffect(() => {
@@ -65,7 +69,7 @@ export function Hero({
     phase === 'measuring'
       ? { opacity: 0 }
       : centred && offset
-        ? { x: offset.x, y: offset.y, scale: SCALE, opacity: 1 }
+        ? { x: offset.x, y: offset.y, scale, opacity: 1 }
         : { x: 0, y: 0, scale: 1, opacity: 1 }
 
   return (

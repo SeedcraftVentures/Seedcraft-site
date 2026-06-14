@@ -31,6 +31,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -41,6 +42,19 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Soften the brand slant on small screens so large slabs don't overhang the
+   viewport edge (the skewed ::before extends by height * tan(skew)). */
+@media (max-width: 700px) {
+  :root {
+    --skew: -7deg;
+  }
 }
 
 ::selection {

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Figtree } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
@@ -20,6 +20,12 @@ const calSans = localFont({
   weight: '600',
   preload: true,
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://seedcraft.co'),

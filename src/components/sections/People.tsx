@@ -32,7 +32,7 @@ export function People() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
             gap: 22,
             maxWidth: 820,
             margin: '0 auto',
@@ -42,7 +42,7 @@ export function People() {
             <Reveal key={m.name} delay={i * 0.06} style={{ marginTop: i === 1 ? 32 : 0 }}>
               <SlantFrame
                 ratio="4 / 5"
-                src={U(m.photo)}
+                src={m.src ?? (m.photo ? U(m.photo) : undefined)}
                 alt={`${m.name}, ${m.role}`}
                 title={m.name}
                 sub={m.role}
