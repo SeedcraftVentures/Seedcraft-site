@@ -1,27 +1,668 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --f: #16562f;        /* forest — primary, text, brand */
+  --a: #2fa15c;        /* accent — highlights, "live", markers */
+  --d: #0c3a21;        /* deep — dark sections, footer */
+  --paper: #fafbf8;    /* page background */
+  --paper2: #eef4ee;   /* tints */
+  --line: #e4ece5;     /* borders, rules */
+  --ink: #5a6b5d;      /* secondary text */
+  --read: #2f4636;     /* long-form body text on paper */
+  --cream: #f2ebdd;    /* PRIMARY CTA fill ONLY */
+
+  --skew: -12deg;      /* the brand slant */
+  --radius: 13px;      /* the brand corner radius */
+
+  --maxw: 1200px;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
 html {
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @apply font-sans bg-cream text-text-dark;
+  margin: 0;
+  background: var(--paper);
+  color: var(--f);
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
-/* Subtle grain texture */
-body::before {
-  content: '';
+::selection {
+  background: var(--a);
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   The brand shape — a skewed, round-cornered slab drawn via
+   ::before so content sits upright. Used on EVERY container.
+   ============================================================ */
+.shape {
+  position: relative;
+  isolation: isolate;
+}
+.shape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius);
+  transform: skewX(var(--skew));
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ============================================================
+   Eyebrow / kicker label
+   ============================================================ */
+.eyebrow {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Heat Glow — hero + primary CTA boxes ONLY
+   ============================================================ */
+.heatglow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #5fb14a 0%, #2e7d32 50%, #0b3d0b 100%);
+}
+.heatglow__highlight {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 110%, #a5d68a 0%, transparent 50%),
+    radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.13) 0%, transparent 40%);
+  pointer-events: none;
+}
+.heatglow__noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   Button — the default for ALL buttons. Label upright; only the
+   ::before slab is skewed. Hover lifts the whole control.
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  transition: transform 0.25s ease;
+}
+.btn::before {
+  border: 1px solid transparent;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn--sm {
+  font-size: 13px;
+  padding: 10px 18px;
+}
+.btn--md {
+  font-size: 14px;
+  padding: 13px 24px;
+}
+.btn--lg {
+  font-size: 16px;
+  padding: 17px 32px;
+}
+/* primary — cream fill, forest text */
+.btn--cream {
+  color: var(--f);
+}
+.btn--cream::before {
+  background: var(--cream);
+  box-shadow: 0 8px 24px -12px rgba(12, 58, 33, 0.5);
+}
+.btn--cream:hover::before {
+  box-shadow: 0 14px 30px -12px rgba(12, 58, 33, 0.6);
+}
+/* solid — forest fill, paper text */
+.btn--solid {
+  color: var(--paper);
+}
+.btn--solid::before {
+  background: var(--f);
+  box-shadow: 0 8px 22px -12px rgba(12, 58, 33, 0.6);
+}
+.btn--solid:hover::before {
+  background: var(--d);
+  box-shadow: 0 14px 28px -12px rgba(12, 58, 33, 0.7);
+}
+/* ghost — translucent white, for dark / heat surfaces (no stroke) */
+.btn--ghost {
+  color: #fff;
+}
+.btn--ghost::before {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.5);
+}
+.btn--ghost:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   Nav — floating glass slab (skewed ::before)
+   ============================================================ */
+.nav-glass::before {
+  background: rgba(12, 58, 33, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.45);
+}
+
+/* ============================================================
+   Card — slanted slab. No plain rectangular cards anywhere.
+   ============================================================ */
+/* no outline stroke by default — definition comes from drop shadow + hover */
+.card::before {
+  background: var(--paper);
+  border: none;
+  box-shadow: 0 12px 30px -16px rgba(12, 58, 33, 0.28);
+}
+.card:hover {
+  transform: translateY(-6px);
+}
+.card:hover::before {
+  box-shadow: 0 34px 66px -22px rgba(12, 58, 33, 0.55);
+}
+.card--active::before {
+  background: var(--paper);
+  box-shadow: 0 26px 56px -22px rgba(12, 58, 33, 0.5);
+}
+/* on dark surfaces — faint fill instead of a stroke */
+.card--dark::before {
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  box-shadow: none;
+}
+.card--dark.card--active::before {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 26px 60px -34px rgba(0, 0, 0, 0.7);
+}
+
+/* ============================================================
+   Tag / status chip — small slanted slab
+   ============================================================ */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  color: var(--ink);
+}
+.tag::before {
+  background: var(--paper2);
+  box-shadow: 0 6px 16px -10px rgba(12, 58, 33, 0.35);
+}
+.tag--live {
+  color: #1c7a40;
+}
+.tag--live::before {
+  background: #e3f5e9;
+}
+
+/* ============================================================
+   Custom cursor — hide native cursor while the mark cursor is active
+   ============================================================ */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ============================================================
+   Top scroll-progress bar (thin accent line)
+   ============================================================ */
+.scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
+  height: 2px;
+  background: var(--a);
+  z-index: 100;
+  transform-origin: 0 0;
+}
+
+/* ============================================================
+   Reveal — sections fade up on entry
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   Mission — editorial two-column, readable (emphasis up, not fade down)
+   ============================================================ */
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 900px) {
+  .mission-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 72px;
+  }
+}
+.mission-body > * + * {
+  margin-top: 26px;
+}
+.mission-lead,
+.mission-core,
+.mission-signoff {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--f);
+  letter-spacing: -1px;
+  line-height: 1.08;
+}
+.mission-lead {
+  font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+}
+.mission-core {
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+}
+.mission-signoff {
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+}
+.mission-p {
+  color: var(--read);
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+}
+.mission-truth {
+  color: var(--read);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   How we work — deep-forest section, sticky assembling mark
+   ============================================================ */
+.work-section {
+  background: var(--d);
+  color: var(--paper);
+  padding: 130px 0;
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 900px) {
+  .work-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: start;
+  }
+}
+.work-rail {
+  position: relative;
+}
+@media (min-width: 900px) {
+  .work-rail-sticky {
+    position: sticky;
+    top: 140px;
+  }
+}
+.work-step {
+  padding: 30px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  transition: opacity 0.4s ease;
+}
+.work-step:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.work-step[data-active='false'] {
+  opacity: 0.42;
+}
+.work-step__num {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--a);
+}
+.work-step__title {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -1px;
+  margin: 8px 0 12px;
+}
+.work-step__body {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+  line-height: 1.55;
+  max-width: 540px;
+}
+
+/* ============================================================
+   Ventures
+   ============================================================ */
+.venture-list {
+  border-top: 1px solid var(--line);
+}
+.venture-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 30px 16px;
+  padding-left: 16px;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left 0.3s ease, background 0.3s ease;
+}
+.venture-row:hover {
+  padding-left: 30px;
+  background: var(--paper2);
+}
+.venture-name {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  letter-spacing: -1px;
+  color: var(--f);
+}
+.venture-desc {
+  color: var(--read);
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+@media (max-width: 720px) {
+  .venture-row {
+    grid-template-columns: auto 1fr;
+    row-gap: 10px;
+  }
+  .venture-row .venture-status {
+    grid-column: 2;
+  }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  background: var(--d);
+  color: var(--paper);
+  padding: 90px 0 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 760px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 40px;
+  }
+}
+.footer-col h4 {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover {
+  color: #fff;
+}
+
+/* ============================================================
+   SlantFrame — parallelogram media card in the brand slant.
+   Content is counter-skewed + overscaled so it fills the slab.
+   ============================================================ */
+.shape-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transform: skewX(var(--skew));
+  background: var(--paper2);
+}
+.shape-frame__inner {
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 1000;
+  display: block;
+  transform: skewX(calc(var(--skew) * -1)) scale(1.24);
+}
+.shape-frame__inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.shape-frame__cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: skewX(calc(var(--skew) * -1));
+  padding: 16px 22px 18px;
+  background: linear-gradient(transparent, rgba(8, 30, 18, 0.82));
+  color: #fff;
+}
+.shape-frame__cap b {
+  display: block;
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.shape-frame__cap span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Highlighted-keyword body (Nura-style readable emphasis)
+   ============================================================ */
+.hl-body {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  color: var(--read);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.45;
+  letter-spacing: -0.2px;
+  font-weight: 500;
+}
+.hl-body mark {
+  background: transparent;
+  color: var(--read);
+}
+.hl-body .hl {
+  background: linear-gradient(transparent 58%, rgba(47, 161, 92, 0.28) 0);
+  color: var(--f);
+  font-weight: 700;
+  padding: 0 1px;
+}
+.hl-body--sm {
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  line-height: 1.62;
+  font-weight: 500;
+}
+.hl-body--lg {
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+  line-height: 1.28;
+  letter-spacing: -0.4px;
+}
+/* highlighted body on a heat-glow / dark surface */
+.hl-body--glow {
+  color: rgba(255, 255, 255, 0.94);
+}
+.hl-body--glow mark {
+  color: rgba(255, 255, 255, 0.88);
+}
+.hl-body--glow .hl {
+  background: none;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Glow slab — slanted brand shape filled with Heat Glow (angled so the text
+   sits on the darker corner for readability). Shared by mission + CTA so they
+   read as the same large button-style container. No stroke; drop shadow only. */
+.glow-slab::before {
+  background: linear-gradient(315deg, #5fb14a 0%, #2e7d32 48%, #0b3d0b 100%);
+  box-shadow: 0 34px 80px -44px rgba(12, 58, 33, 0.6);
+  /* rounder corners so it reads as a large version of the button shape */
+  border-radius: 30px;
+}
+
+/* ============================================================
+   Feature columns — mark-part chip + title + body
+   ============================================================ */
+.feat-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  color: var(--a);
+}
+.feat-chip::before {
+  background: var(--paper2);
+}
+.feat-chip--dark::before {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   CTA heat-glow box (a correct, non-hero use of Heat Glow)
+   ============================================================ */
+.cta-glow {
+  border-radius: var(--radius);
+  padding: clamp(40px, 6vw, 72px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   Lab page chrome
+   ============================================================ */
+.lab-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 120px 24px 180px;
+}
+.lab-head {
+  margin-bottom: 80px;
+  max-width: 720px;
+}
+.lab-frame {
+  margin-bottom: 110px;
+}
+.lab-cap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.lab-cap__no {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--a);
+  letter-spacing: 0;
+}
+.lab-cap__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.lab-stage {
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   Reduced motion — still fallbacks for every animation
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
