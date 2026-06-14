@@ -123,6 +123,13 @@ export function Hero({
             animate={reduce || showText ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
             transition={{ duration: DOCK_DUR, ease: EASE }}
           >
+            <p
+              className="eyebrow"
+              style={{ color: 'rgba(255,255,255,0.85)', marginBottom: 20 }}
+            >
+              {hero.eyebrow}
+            </p>
+
             <h1
               className="font-display"
               style={{

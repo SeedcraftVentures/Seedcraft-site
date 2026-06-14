@@ -37,7 +37,13 @@ export function Nav() {
           <Mark variant="static" size={18} color="#fff" shadow />
           <span
             className="font-display"
-            style={{ color: '#fff', fontSize: 18, letterSpacing: '-0.5px' }}
+            style={{
+              color: '#fff',
+              fontSize: 18,
+              letterSpacing: '-0.5px',
+              lineHeight: 1,
+              transform: 'translateY(1px)',
+            }}
           >
             Seedcraft
           </span>

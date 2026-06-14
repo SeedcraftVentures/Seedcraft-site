@@ -39,7 +39,7 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: 'A studio for the everyday hero',
+  eyebrow: 'Seedcraft: A Venture Studio',
   h1: 'Here for the Everyday Hero.',
   // rendered as forced line breaks: "Here for the" / "Everyday Hero."
   h1Lines: ['Here for the', 'Everyday Hero.'],
