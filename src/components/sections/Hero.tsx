@@ -8,8 +8,8 @@ import { GhostTexture } from '../GhostTexture'
 import { Mark, type AssembleStyle } from '../Mark'
 import { Button } from '../Button'
 
-const DOCK_SIZE = 164
-const SCALE = 2.5
+const DOCK_SIZE = 196
+const SCALE = 2.2
 const EASE = [0.22, 1, 0.36, 1] as const // smooth ease-out (fast to slow)
 const DOCK_DUR = 1.3
 
@@ -82,7 +82,7 @@ export function Hero({
         className="relative mx-auto w-full px-6 md:px-10"
         style={{ maxWidth: 'var(--maxw)', zIndex: 1, paddingTop: 120, paddingBottom: 80 }}
       >
-        <div style={{ maxWidth: 760 }}>
+        <div style={{ maxWidth: 880 }}>
           {reduce ? (
             <div style={{ width: DOCK_SIZE, height: DOCK_SIZE, marginBottom: 30 }}>
               <Mark variant="static" size={DOCK_SIZE} color="#fff" shadow />
@@ -123,9 +123,9 @@ export function Hero({
               className="font-display"
               style={{
                 color: '#fff',
-                fontSize: 'clamp(2.6rem, 7vw, 5.2rem)',
-                lineHeight: 0.98,
-                letterSpacing: '-2px',
+                fontSize: 'clamp(3.1rem, 8.4vw, 6.4rem)',
+                lineHeight: 0.96,
+                letterSpacing: '-2.5px',
                 marginBottom: 26,
                 textShadow: '0 2px 24px rgba(8, 30, 18, 0.22)',
               }}
