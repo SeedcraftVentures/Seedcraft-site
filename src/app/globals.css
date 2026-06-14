@@ -499,6 +499,11 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   transform: skewX(var(--skew));
   background: var(--paper2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.shape-frame:hover {
+  transform: skewX(var(--skew)) translateY(-6px);
+  box-shadow: 0 34px 66px -22px rgba(12, 58, 33, 0.55);
 }
 .shape-frame__inner {
   width: 100%;

@@ -216,6 +216,6 @@ export const footer = {
   ],
   legal: {
     copyright: '© 2026 Seedcraft Ventures',
-    location: 'Edinburgh, Scotland',
+    location: 'Auchterarder, Scotland',
   },
 }
