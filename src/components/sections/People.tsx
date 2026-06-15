@@ -34,12 +34,12 @@ export function People() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
             gap: 22,
-            maxWidth: 820,
+            maxWidth: 980,
             margin: '0 auto',
           }}
         >
           {team.members.map((m, i) => (
-            <Reveal key={m.name} delay={i * 0.06} style={{ marginTop: i === 1 ? 32 : 0 }}>
+            <Reveal key={m.name} delay={i * 0.06} style={{ marginTop: i % 2 === 1 ? 30 : 0 }}>
               <SlantFrame
                 ratio="4 / 5"
                 src={m.src ?? (m.photo ? U(m.photo) : undefined)}
@@ -49,6 +49,54 @@ export function People() {
               />
             </Reveal>
           ))}
+
+          {/* open invitation card */}
+          <Reveal delay={team.members.length * 0.06} style={{ marginTop: team.members.length % 2 === 1 ? 30 : 0 }}>
+            <div
+              className="shape-frame"
+              style={{
+                aspectRatio: '4 / 5',
+                background: 'transparent',
+                border: '1.5px dashed rgba(22, 86, 47, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <div
+                style={{
+                  transform: 'skewX(calc(var(--skew) * -1))',
+                  textAlign: 'center',
+                  padding: '0 24px',
+                }}
+              >
+                <div
+                  className="font-display"
+                  style={{ fontSize: '2.6rem', letterSpacing: '-1.5px', color: 'var(--f)' }}
+                >
+                  You?
+                </div>
+                <p style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--read)', marginTop: 10 }}>
+                  Got a skill set worth lending? We are always after the right people to build with.
+                </p>
+                <a
+                  href="#partnerships"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    marginTop: 14,
+                    fontWeight: 600,
+                    fontSize: 13.5,
+                    color: 'var(--f)',
+                  }}
+                >
+                  Get in touch
+                  <span aria-hidden>&rsaquo;</span>
+                </a>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

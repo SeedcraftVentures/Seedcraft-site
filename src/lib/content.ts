@@ -125,7 +125,7 @@ export const ventures = {
     {
       name: 'Vent',
       desc: 'Turning the complaints of people the market stopped listening to into what gets built next.',
-      status: { label: 'Build', tone: 'building' },
+      status: { label: 'Design phase', tone: 'building' },
       href: 'https://vented.so',
     },
     {
