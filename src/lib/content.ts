@@ -92,17 +92,17 @@ export const howWeWork = {
     {
       num: '01',
       title: 'Build',
-      body: 'We find a gap everyone else walked past and build the real thing, fast. A working product in front of real people, not a deck or a maybe.',
+      body: 'We find the gap everyone walked past and build the real thing, fast. A working product, not a deck or a maybe.',
     },
     {
       num: '02',
       title: 'Prove',
-      body: 'Real users, real revenue. We push to a genuine proof point before anyone says the word "scale". Validation over vanity.',
+      body: 'Real users, real revenue. We push to a genuine proof point before anyone says scale. Validation over vanity.',
     },
     {
       num: '03',
       title: 'Hand over',
-      body: 'We bring in the right operators to grow it, keep a stake and stay close, then start clearing the next obstacle.',
+      body: 'We bring in the right operators to grow it, keep a stake, stay close, then clear the next obstacle.',
     },
   ] as WorkStep[],
 }

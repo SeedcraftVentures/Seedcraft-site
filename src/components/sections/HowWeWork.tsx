@@ -43,7 +43,7 @@ function StepCard({
   }, [active, idx, onReach])
 
   return (
-    <div ref={ref}>
+    <div ref={ref} style={{ height: '100%' }}>
       <Card
         active={active}
         style={{
@@ -145,7 +145,7 @@ export function HowWeWork() {
           }}
         >
           {howWeWork.steps.map((s, i) => (
-            <Reveal key={s.num} delay={i * 0.12}>
+            <Reveal key={s.num} delay={i * 0.12} style={{ height: '100%' }}>
               <StepCard step={s} idx={i} onReach={onReach} />
             </Reveal>
           ))}
