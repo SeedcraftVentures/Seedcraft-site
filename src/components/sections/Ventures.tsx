@@ -26,48 +26,59 @@ export function Ventures() {
           </h2>
         </Reveal>
 
-        <div role="list" className="venture-list">
-          {ventures.items.map((v, i) => {
-            const Row = (
-              <>
-                <span
-                  aria-hidden
-                  style={{ display: 'flex', alignItems: 'center', color: 'var(--a)' }}
-                >
-                  <Mark variant="static" size={22} />
-                </span>
-                <div>
-                  <span className="venture-name">{v.name}</span>
-                  <p className="venture-desc">{v.desc}</p>
-                </div>
-                <span className="venture-status">
-                  <StatusTag status={v.status} />
-                </span>
-              </>
-            )
-
-            const inner = v.href ? (
-              <a
-                href={v.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="venture-row"
-                role="listitem"
-              >
-                {Row}
-              </a>
-            ) : (
-              <div className="venture-row" role="listitem">
-                {Row}
+        <div className="ventures-cols">
+          {ventures.groups.map((group) => (
+            <div key={group.heading}>
+              <div className="ventures-group-head">
+                <h3>{group.heading}</h3>
+                {group.note && <span>{group.note}</span>}
               </div>
-            )
 
-            return (
-              <Reveal key={v.name} delay={i * 0.08}>
-                {inner}
-              </Reveal>
-            )
-          })}
+              <div role="list" className="venture-list">
+                {group.items.map((v, i) => {
+                  const Row = (
+                    <>
+                      <span
+                        aria-hidden
+                        style={{ display: 'flex', alignItems: 'center', color: 'var(--a)' }}
+                      >
+                        <Mark variant="static" size={22} />
+                      </span>
+                      <div>
+                        <span className="venture-name">{v.name}</span>
+                        <p className="venture-desc">{v.desc}</p>
+                      </div>
+                      <span className="venture-status">
+                        <StatusTag status={v.status} />
+                      </span>
+                    </>
+                  )
+
+                  const inner = v.href ? (
+                    <a
+                      href={v.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="venture-row"
+                      role="listitem"
+                    >
+                      {Row}
+                    </a>
+                  ) : (
+                    <div className="venture-row" role="listitem">
+                      {Row}
+                    </div>
+                  )
+
+                  return (
+                    <Reveal key={v.name} delay={i * 0.06}>
+                      {inner}
+                    </Reveal>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

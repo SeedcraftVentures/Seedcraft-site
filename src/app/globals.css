@@ -411,6 +411,35 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    Ventures
    ============================================================ */
+.ventures-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+}
+@media (min-width: 860px) {
+  .ventures-cols {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+}
+.ventures-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.ventures-group-head h3 {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.8px;
+  color: var(--f);
+}
+.ventures-group-head span {
+  font-size: 13px;
+  color: var(--ink);
+}
 .venture-list {
   border-top: 1px solid var(--line);
 }
@@ -666,6 +695,54 @@ a { color: inherit; text-decoration: none; }
   border: 1px dashed var(--line);
   border-radius: 18px;
   overflow: hidden;
+}
+
+/* ============================================================
+   Legal / long-form pages (privacy policy, terms)
+   ============================================================ */
+.legal {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--read);
+}
+.legal h1 {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--f);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+}
+.legal h2 {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--f);
+  font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  margin: 44px 0 12px;
+}
+.legal p,
+.legal li {
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.legal p {
+  margin-bottom: 14px;
+}
+.legal ul {
+  padding-left: 20px;
+  margin: 8px 0 16px;
+}
+.legal li {
+  margin: 6px 0;
+}
+.legal a {
+  color: var(--f);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.legal .muted {
+  color: var(--ink);
+  font-size: 14px;
+  margin-bottom: 4px;
 }
 
 /* ============================================================

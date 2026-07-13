@@ -107,40 +107,67 @@ export const howWeWork = {
   ] as WorkStep[],
 }
 
+export interface VentureGroup {
+  heading: string
+  note?: string
+  items: Venture[]
+}
+
 export const ventures = {
   label: 'The ventures',
   title: "Pathways we've cleared, and the ones we're clearing now.",
-  items: [
+  groups: [
     {
-      name: 'HiddenGem',
-      desc: 'Uncovering remarkable talent.',
-      status: { label: 'Launched', tone: 'live' },
+      heading: 'Ventures',
+      items: [
+        {
+          name: 'HiddenGem',
+          desc: 'Uncovering remarkable talent.',
+          status: { label: 'Launched', tone: 'live' },
+        },
+        {
+          name: 'Shiftly',
+          desc: 'Fair shifts in a couple of clicks.',
+          status: { label: 'Final push', tone: 'building' },
+          href: 'https://shiftly.so',
+        },
+        {
+          // URL (getsmokeless.io) not live yet
+          name: 'Smokeless',
+          desc: 'Ritual replacement, giving people control over their cravings.',
+          status: { label: 'Final push', tone: 'building' },
+        },
+        {
+          name: 'Escapage',
+          desc: 'Pinterest for creative writers.',
+          status: { label: 'Development', tone: 'building' },
+          href: 'https://www.escapage.ink',
+        },
+        {
+          name: 'Vent',
+          desc: 'Turning the complaints of people the market stopped listening to into what gets built next.',
+          status: { label: 'Design phase', tone: 'building' },
+          href: 'https://vented.so',
+        },
+        {
+          name: 'Kosmos',
+          desc: 'Your universe, on track.',
+          status: { label: 'Development', tone: 'building' },
+        },
+      ],
     },
     {
-      name: 'Shiftly',
-      desc: 'Fair shifts in a couple of clicks.',
-      status: { label: 'Final push', tone: 'building' },
-      href: 'https://shiftly.so',
+      heading: 'Games',
+      note: 'Off-mission on purpose. Just a bit of fun.',
+      items: [
+        {
+          name: 'Ticker',
+          desc: 'Numbers, letters, conundrums against the clock.',
+          status: { label: 'In testing', tone: 'building' },
+        },
+      ],
     },
-    {
-      name: 'Vent',
-      desc: 'Turning the complaints of people the market stopped listening to into what gets built next.',
-      status: { label: 'Design phase', tone: 'building' },
-      href: 'https://vented.so',
-    },
-    {
-      // URL (getsmokeless.io) not live yet
-      name: 'Smokeless',
-      desc: 'Ritual replacement, giving people control over their cravings.',
-      status: { label: 'Build', tone: 'building' },
-    },
-    {
-      name: 'Escapage',
-      desc: 'Pinterest for creative writers.',
-      status: { label: 'Research', tone: 'building' },
-      href: 'https://www.escapage.ink',
-    },
-  ] as Venture[],
+  ] as VentureGroup[],
 }
 
 export interface TeamMember {
@@ -197,6 +224,7 @@ export const footer = {
         { label: 'Vent', href: 'https://vented.so' },
         { label: 'Smokeless', href: '#ventures' },
         { label: 'Escapage', href: 'https://www.escapage.ink' },
+        { label: 'Kosmos', href: '#ventures' },
       ],
     },
     {
