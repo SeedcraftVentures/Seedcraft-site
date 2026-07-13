@@ -161,7 +161,7 @@ export const ventures = {
       note: 'Off-mission on purpose. Just a bit of fun.',
       items: [
         {
-          name: 'Ticker',
+          name: 'Ticker!',
           desc: 'Numbers, letters, conundrums against the clock.',
           status: { label: 'In testing', tone: 'building' },
         },
