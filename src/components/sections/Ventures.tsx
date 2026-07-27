@@ -28,7 +28,10 @@ function VentureCard({ v }: { v: Venture }) {
       <p className="venture-card__desc">{v.desc}</p>
 
       <div className="venture-card__foot">
-        <span className="venture-card__platform">{v.platform}</span>
+        <span className="venture-card__meta">
+          <span className="venture-card__category">{v.category}</span>
+          <span className="venture-card__platform">{v.platform}</span>
+        </span>
         {v.href && (
           <span className="venture-card__link">
             Visit

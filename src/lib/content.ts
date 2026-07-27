@@ -22,6 +22,8 @@ export type Stage = 'live' | 'building' | 'early'
 export interface Venture {
   name: string
   desc: string
+  /** what kind of business it is, e.g. "Marketplace SaaS" or "Health tech" */
+  category: string
   /** where the product actually lives, e.g. "Web app" or "iOS and Android" */
   platform: string
   status: VentureStatus
@@ -176,35 +178,40 @@ export const ventures = {
     { key: 'building', label: 'Building' },
     { key: 'early', label: 'Early' },
   ],
-  // NOTE: `platform` values are my best guess at where each product lives.
-  // Correct any that are wrong.
+  // NOTE: Escapage (Creative tools) and Vent (Consumer insight) are my
+  // suggested categories, not yours. Change them if they are off.
   items: [
     {
       name: 'HiddenGem',
       desc: 'Uncovering remarkable talent.',
+      category: 'Marketplace SaaS',
       platform: 'Web app',
       status: { label: 'Launched', tone: 'live' },
       stage: 'live',
+      href: 'https://www.hiddengem.gg',
     },
     {
       name: 'Shiftly',
       desc: 'Fair shifts in a couple of clicks.',
+      category: 'SaaS',
       platform: 'Web and mobile',
       status: { label: 'Final push', tone: 'building' },
       stage: 'building',
       href: 'https://shiftly.so',
     },
     {
-      // URL (getsmokeless.io) not live yet
       name: 'Smokeless',
       desc: 'Ritual replacement, giving people control over their cravings.',
+      category: 'Health tech',
       platform: 'Mobile: iOS and Android',
       status: { label: 'Final push', tone: 'building' },
       stage: 'building',
+      href: 'https://www.gosmokeless.io',
     },
     {
       name: 'Escapage',
       desc: 'Pinterest for creative writers.',
+      category: 'Creative tools',
       platform: 'Mobile: iOS and Android',
       status: { label: 'Development', tone: 'building' },
       stage: 'building',
@@ -213,14 +220,16 @@ export const ventures = {
     {
       name: 'Vent',
       desc: 'Turning the complaints of people the market stopped listening to into what gets built next.',
+      category: 'Consumer insight',
       platform: 'Web and mobile',
+      // no public URL yet
       status: { label: 'Design phase', tone: 'building' },
       stage: 'early',
-      href: 'https://vented.so',
     },
     {
       name: 'Kosmos',
       desc: 'Your universe, on track.',
+      category: 'Productivity',
       platform: 'Mobile: iOS and Android',
       status: { label: 'Development', tone: 'building' },
       stage: 'building',
@@ -321,10 +330,10 @@ export const footer = {
     {
       title: 'Ventures',
       links: [
-        { label: 'HiddenGem', href: '/#ventures' },
+        { label: 'HiddenGem', href: 'https://www.hiddengem.gg' },
         { label: 'Shiftly', href: 'https://shiftly.so' },
-        { label: 'Vent', href: 'https://vented.so' },
-        { label: 'Smokeless', href: '/#ventures' },
+        { label: 'Vent', href: '/#ventures' },
+        { label: 'Smokeless', href: 'https://www.gosmokeless.io' },
         { label: 'Escapage', href: 'https://www.escapage.ink' },
         { label: 'Kosmos', href: '/#ventures' },
       ],

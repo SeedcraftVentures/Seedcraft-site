@@ -584,6 +584,21 @@ a { color: inherit; text-decoration: none; }
 .venture-card__desc {
   margin-bottom: 26px;
 }
+/* Category over platform, stacked so neither wraps in a narrow card. */
+.venture-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.venture-card__category {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--a);
+}
 /* Sentence case, not uppercase: these carry product names like iOS, which an
    uppercase transform would mangle. */
 .venture-card__platform {
