@@ -76,8 +76,7 @@ export function Hero({
     <HeatGlow
       className="relative flex items-center"
       noise={false}
-      style={{ minHeight }}
-      data-cursor="light"
+      style={{ minHeight }}
     >
       <div ref={hostRef} style={{ position: 'absolute', inset: 0 }} aria-hidden />
       <GhostTexture corner="bottom-right" width="42%" opacity={0.07} color="#fff" />
@@ -136,7 +135,7 @@ export function Hero({
                 color: '#fff',
                 fontSize: 'clamp(3.1rem, 8.4vw, 6.4rem)',
                 lineHeight: 0.96,
-                letterSpacing: '-2.5px',
+                letterSpacing: '-1.4px',
                 marginBottom: 26,
                 textShadow: '0 2px 24px rgba(8, 30, 18, 0.22)',
               }}

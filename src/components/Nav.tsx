@@ -1,10 +1,26 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { nav } from '@/lib/content'
 import { Mark } from './Mark'
 import { Button } from './Button'
 
 export function Nav() {
+  const [open, setOpen] = useState(false)
+
+  // Close on Escape, and never leave the panel open across a resize to desktop.
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    const onResize = () => window.innerWidth >= 768 && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('resize', onResize)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [open])
+
   return (
     <nav
       aria-label="Primary"
@@ -20,7 +36,6 @@ export function Nav() {
     >
       <div
         className="shape nav-glass"
-        data-cursor="light"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -40,7 +55,7 @@ export function Nav() {
             style={{
               color: '#fff',
               fontSize: 18,
-              letterSpacing: '-0.5px',
+              letterSpacing: '-0.2px',
               lineHeight: 1,
               transform: 'translateY(1px)',
             }}
@@ -49,37 +64,51 @@ export function Nav() {
           </span>
         </a>
 
-        <ul
-          style={{
-            display: 'flex',
-            gap: 26,
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-          }}
-          className="max-md:hidden"
-        >
+        <ul className="nav-links max-md:hidden">
           {nav.links.map((l) => (
             <li key={l.href}>
-              <a
-                href={l.href}
-                style={{
-                  color: 'rgba(255,255,255,0.78)',
-                  fontSize: 14,
-                  fontWeight: 500,
-                  transition: 'color 0.2s ease',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = 'rgba(255,255,255,0.78)')
-                }
-              >
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="max-md:hidden">
+            <Button href={nav.cta.href} variant="cream" size="sm">
+              {nav.cta.label}
+            </Button>
+          </div>
+
+          {/* Mobile toggle: the desktop links were previously hidden with no
+              fallback, which left small screens with no navigation at all. */}
+          <button
+            type="button"
+            className="nav-burger md:hidden"
+            aria-expanded={open}
+            aria-controls="nav-mobile"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span data-open={open} />
+            <span data-open={open} />
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="nav-mobile"
+        className={`shape nav-glass nav-mobile md:hidden ${open ? 'is-open' : ''}`}
+        hidden={!open}
+      >
+        <ul>
+          {nav.links.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} onClick={() => setOpen(false)}>
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
-
         <Button href={nav.cta.href} variant="cream" size="sm">
           {nav.cta.label}
         </Button>

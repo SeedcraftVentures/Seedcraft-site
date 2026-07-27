@@ -16,7 +16,6 @@ export function Mission() {
         <Reveal>
           <div
             className="shape glow-slab"
-            data-cursor="light"
             style={{
               position: 'relative',
               padding: 'clamp(48px, 7vw, 88px)',
@@ -43,28 +42,9 @@ export function Mission() {
             </span>
 
             <div style={{ marginTop: 26, maxWidth: 800 }}>
-              <HighlightText
-                className="hl-body--glow"
-                segments={[
-                  'Everyone wants to live a good life. To create, to inspire, to do what they think is important, and to spend time with those who matter. ',
-                  { dim: 'And yet the world, somehow, finds a way to ' },
-                  { hl: 'slow us down' },
-                  { dim: '. Our mission is to ' },
-                  { hl: 'remove those obstacles' },
-                  { dim: ', and create ' },
-                  { hl: 'new pathways' },
-                  { dim: ', so people have the ' },
-                  { hl: 'freedom to be who they want to be' },
-                  { dim: '. That is what we stand for.' },
-                ]}
-              />
+              <HighlightText className="hl-body--glow" segments={mission.segments} />
 
-              <p
-                className="hl-body hl-body--glow"
-                style={{ marginTop: 30, fontWeight: 700, color: '#fff' }}
-              >
-                We are Seedcraft, here for the everyday hero.
-              </p>
+              <p className="mission-signoff-line">{mission.signoff}</p>
             </div>
           </div>
         </Reveal>

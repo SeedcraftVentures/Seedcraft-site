@@ -1,7 +1,6 @@
 /**
- * Legacy URL from when the game was called Ticker!. This path was submitted to
- * the Google Play Console listing, so it must keep resolving. Serves the current
- * document with a canonical pointing at the live URL.
+ * Canonical Tick Down legal page. This is the URL compiled into the app build
+ * and submitted to the Play Console, so it is the one that must never move.
  */
 import type { Metadata } from 'next'
 import { TickDownLegal } from '@/components/games/TickDownLegal'
@@ -11,9 +10,8 @@ export const metadata: Metadata = {
   description:
     'Terms of Use and Privacy Policy for Tick Down, a game by Seedcraft Games.',
   alternates: { canonical: '/games/tick-down/privacy' },
-  robots: { index: false, follow: true },
 }
 
-export default function TickerPrivacyLegacy() {
+export default function TickDownLegalPage() {
   return <TickDownLegal />
 }

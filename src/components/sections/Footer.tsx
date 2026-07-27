@@ -3,7 +3,7 @@ import { Mark } from '../Mark'
 
 export function Footer() {
   return (
-    <footer className="site-footer" data-cursor="light">
+    <footer className="site-footer">
       <div className="mx-auto px-6 md:px-10" style={{ maxWidth: 'var(--maxw)' }}>
         <div className="footer-grid">
           {/* Brand */}
@@ -12,7 +12,7 @@ export function Footer() {
               <Mark variant="static" size={30} color="#fff" shadow />
               <span
                 className="font-display"
-                style={{ color: '#fff', fontSize: 22, letterSpacing: '-0.5px' }}
+                style={{ color: '#fff', fontSize: 22, letterSpacing: '-0.2px' }}
               >
                 Seedcraft Ventures
               </span>

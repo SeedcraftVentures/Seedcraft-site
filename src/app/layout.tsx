@@ -4,7 +4,6 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { ScrollProgress } from '@/components/ScrollProgress'
-import { CustomCursor } from '@/components/CustomCursor'
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -28,15 +27,17 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://seedcraft.co'),
-  title: 'Seedcraft Ventures · Here for the everyday hero',
+  // www is canonical: the host 307s the apex to www, so canonical tags and OG
+  // URLs must use www or they point at a redirect.
+  metadataBase: new URL('https://www.seedcraft.co'),
+  title: 'Seedcraft Ventures · Here for the Everyday Hero',
   description:
-    'A studio for the everyday hero. We build the products that clear the obstacles, and open new pathways to the lives people are trying to live.',
+    'A startup studio, not a fund. We build the products that make being who you want to be the easy option, with the fairness and the follow-through already in them.',
   openGraph: {
-    title: 'Seedcraft Ventures · Here for the everyday hero',
+    title: 'Seedcraft Ventures · Here for the Everyday Hero',
     description:
-      'We build the products that clear the obstacles, and open new pathways to the lives people are trying to live.',
-    url: 'https://seedcraft.co',
+      'We build the products that make being who you want to be the easy option.',
+    url: 'https://www.seedcraft.co',
     siteName: 'Seedcraft Ventures',
     locale: 'en_GB',
     type: 'website',
@@ -52,7 +53,6 @@ export default function RootLayout({
     <html lang="en" className={`${figtree.variable} ${calSans.variable}`}>
       <body>
         <ScrollProgress />
-        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -47,7 +47,7 @@ function StepCard({
       <Card
         active={active}
         style={{
-          padding: '40px 34px',
+          padding: '42px 48px',
           height: '100%',
           textAlign: 'center',
           display: 'flex',
@@ -57,7 +57,7 @@ function StepCard({
       >
         <h3
           className="font-display"
-          style={{ fontSize: 'clamp(1.6rem, 2.4vw, 2rem)', letterSpacing: '-1px', margin: '0 0 14px', color: 'var(--f)' }}
+          style={{ fontSize: 'clamp(1.6rem, 2.4vw, 2rem)', letterSpacing: '-0.5px', margin: '0 0 14px', color: 'var(--f)' }}
         >
           {step.title}
         </h3>
@@ -77,7 +77,6 @@ export function HowWeWork() {
     <section
       id="how-we-work"
       className="work-section"
-      data-cursor="light"
       style={{ position: 'relative', overflow: 'hidden' }}
     >
       {/* large glowing mark on the right — lights part-by-part as steps activate */}
@@ -118,7 +117,7 @@ export function HowWeWork() {
             style={{
               color: '#fff',
               fontSize: 'clamp(2rem, 4.5vw, 3rem)',
-              letterSpacing: '-1.5px',
+              letterSpacing: '-0.8px',
               lineHeight: 1.05,
               margin: '24px 0 16px',
             }}

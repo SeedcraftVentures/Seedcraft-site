@@ -95,7 +95,7 @@ export function ShapeMediaRow() {
 const FEATURES: { Icon: LucideIcon; title: string; body: string }[] = [
   { Icon: Crosshair, title: 'Find the gap', body: 'We look where everyone else walked past, then build the real thing in front of real people.' },
   { Icon: BadgeCheck, title: 'Prove it works', body: 'Real users, real revenue. A genuine proof point before anyone says the word scale.' },
-  { Icon: Handshake, title: 'Hand it over', body: 'The right operators grow it. We keep a stake, stay close, and clear the next obstacle.' },
+  { Icon: Handshake, title: 'Hand it over', body: 'The right people grow it. We keep our stake, stay close, and go and start the next one.' },
 ]
 
 export function FeatureColumns({ dark = false }: { dark?: boolean }) {
@@ -213,18 +213,8 @@ export function MissionHighlight() {
     <div style={{ maxWidth: 880, margin: '0 auto' }}>
       <SectionLabel>{mission.label}</SectionLabel>
       <div style={{ marginTop: 32 }}>
-        <HighlightText
-          segments={[
-            'Everyone wants to live a good life. To create, to inspire, to do what they think is important. ',
-            { dim: 'And yet the world, somehow, finds a way to ' },
-            { hl: 'slow us down' },
-            { dim: '. Our mission is to ' },
-            { hl: 'remove those obstacles' },
-            { dim: ', and create ' },
-            { hl: 'new pathways' },
-            { dim: ', so people have the freedom to be who they want to be.' },
-          ]}
-        />
+        {/* Pulled from content so the lab cannot drift out of sync with the copy */}
+        <HighlightText segments={mission.segments} />
       </div>
     </div>
   )

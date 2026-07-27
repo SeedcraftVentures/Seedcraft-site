@@ -17,7 +17,7 @@ export function People() {
             style={{
               color: 'var(--f)',
               fontSize: 'clamp(2rem, 4.5vw, 3rem)',
-              letterSpacing: '-1.5px',
+              letterSpacing: '-0.8px',
               lineHeight: 1.05,
               margin: '24px 0 14px',
             }}
@@ -72,7 +72,7 @@ export function People() {
               >
                 <div
                   className="font-display"
-                  style={{ fontSize: '2.6rem', letterSpacing: '-1.5px', color: 'var(--f)' }}
+                  style={{ fontSize: '2.6rem', letterSpacing: '-0.8px', color: 'var(--f)' }}
                 >
                   You?
                 </div>
@@ -80,7 +80,7 @@ export function People() {
                   Got a skill set worth lending? We are always after the right people to build with.
                 </p>
                 <a
-                  href="#partnerships"
+                  href="#build-with-us"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',

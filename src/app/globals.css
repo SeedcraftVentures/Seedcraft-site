@@ -62,11 +62,13 @@ img {
   color: #fff;
 }
 
+/* Cal Sans sets tight by default. The negative tracking below is deliberately
+   light: anything closer crams the display sizes, the hero worst of all. */
 h1, h2, h3, h4 {
   font-family: var(--font-cal), system-ui, sans-serif;
   font-weight: 600;
   margin: 0;
-  letter-spacing: -1px;
+  letter-spacing: -0.4px;
 }
 
 p { margin: 0; }
@@ -153,17 +155,20 @@ a { color: inherit; text-decoration: none; }
 .btn:hover {
   transform: translateY(-2px);
 }
+/* Horizontal padding runs generous on every skewed container: the ::before
+   slab leans away from the content box, so a label sitting at a normal inset
+   ends up crowding the slanted edge. */
 .btn--sm {
   font-size: 13px;
-  padding: 10px 18px;
+  padding: 10px 23px;
 }
 .btn--md {
   font-size: 14px;
-  padding: 13px 24px;
+  padding: 13px 30px;
 }
 .btn--lg {
   font-size: 16px;
-  padding: 17px 32px;
+  padding: 17px 40px;
 }
 /* primary — cream fill, forest text */
 .btn--cream {
@@ -210,6 +215,79 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.45);
 }
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* Mobile menu — the desktop links hide under 768px, so small screens need
+   their own way through the site. */
+.nav-burger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 38px;
+  padding: 0 9px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-burger span[data-open='true']:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+.nav-burger span[data-open='true']:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+.nav-mobile {
+  margin-top: 10px;
+  padding: 18px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+.nav-mobile[hidden] {
+  display: none;
+}
+.nav-mobile ul {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  width: 100%;
+}
+.nav-mobile a {
+  display: block;
+  padding: 11px 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 16px;
+  font-weight: 500;
+}
+.nav-mobile a:hover {
+  color: #fff;
+}
 
 /* ============================================================
    Card — slanted slab. No plain rectangular cards anywhere.
@@ -253,7 +331,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 11px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  padding: 6px 12px;
+  padding: 7px 16px;
   color: var(--ink);
 }
 .tag::before {
@@ -265,14 +343,6 @@ a { color: inherit; text-decoration: none; }
 }
 .tag--live::before {
   background: #e3f5e9;
-}
-
-/* ============================================================
-   Custom cursor — hide native cursor while the mark cursor is active
-   ============================================================ */
-.has-custom-cursor,
-.has-custom-cursor * {
-  cursor: none !important;
 }
 
 /* ============================================================
@@ -324,8 +394,19 @@ a { color: inherit; text-decoration: none; }
 .mission-signoff {
   font-family: var(--font-cal), system-ui, sans-serif;
   color: var(--f);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 1.08;
+}
+
+/* The closing line carries the brand promise, so it is set larger than the
+   body it follows rather than matching it. */
+.mission-signoff-line {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: #fff;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-top: 40px;
 }
 .mission-lead {
   font-size: clamp(1.9rem, 4.2vw, 2.9rem);
@@ -398,7 +479,7 @@ a { color: inherit; text-decoration: none; }
 .work-step__title {
   font-family: var(--font-cal), system-ui, sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   margin: 8px 0 12px;
 }
 .work-step__body {
@@ -409,74 +490,410 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
-   Ventures
+   Ventures — filterable card grid
    ============================================================ */
-.ventures-cols {
+.venture-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 36px 0 44px;
+}
+.venture-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 11px 23px;
+  color: var(--ink);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+.venture-filter::before {
+  background: var(--paper2);
+  box-shadow: 0 6px 16px -12px rgba(12, 58, 33, 0.4);
+}
+.venture-filter:hover:not(:disabled) {
+  color: var(--f);
+  transform: translateY(-2px);
+}
+.venture-filter.is-on {
+  color: #fff;
+}
+.venture-filter.is-on::before {
+  background: var(--f);
+  box-shadow: 0 10px 24px -12px rgba(12, 58, 33, 0.6);
+}
+.venture-filter:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.venture-filter__count {
+  font-size: 11px;
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+.venture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+.venture-grid > * {
+  height: 100%;
+}
+.venture-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 34px 48px 30px;
+}
+.venture-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.venture-card__name {
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  letter-spacing: -0.5px;
+  color: var(--f);
+  margin-bottom: 8px;
+}
+.venture-card__desc {
+  color: var(--read);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+.venture-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+/* Keeps a gap when the description is short enough that `auto` collapses */
+.venture-card__desc {
+  margin-bottom: 26px;
+}
+/* Sentence case, not uppercase: these carry product names like iOS, which an
+   uppercase transform would mangle. */
+.venture-card__platform {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+}
+.venture-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--f);
+  transition: gap 0.22s ease;
+}
+a.venture-card:hover .venture-card__link {
+  gap: 12px;
+}
+
+/* ============================================================
+   Shared section typography
+   ============================================================ */
+.section-title {
+  color: var(--f);
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  letter-spacing: -0.8px;
+  line-height: 1.06;
+  max-width: 640px;
+}
+.section-sub {
+  color: var(--read);
+  font-size: clamp(1.02rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+/* Inline "go somewhere" link. Uses a real arrow: a single part of the mark at
+   this size read as a thick apostrophe rather than as direction. */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--f);
+  font-weight: 600;
+  font-size: 15px;
+  transition: gap 0.22s ease;
+}
+.arrow-link:hover {
+  gap: 14px;
+}
+
+/* ============================================================
+   Brand bullet — the whole mark inside the slanted slab
+   ============================================================ */
+.brand-bullet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: var(--a);
+}
+/* Light by default so it separates from the --paper2 bands it usually sits on;
+   inside a --paper card it flips to the tint instead (below). */
+.brand-bullet::before {
+  background: var(--paper);
+  box-shadow: 0 8px 20px -14px rgba(12, 58, 33, 0.45);
+}
+.brand-bullet--dark {
+  color: var(--a);
+}
+.brand-bullet--dark::before {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: none;
+}
+.brand-bullet--games {
+  color: var(--game-a);
+}
+.brand-bullet--games::before {
+  background: rgba(242, 177, 52, 0.12);
+  box-shadow: none;
+}
+/* On a paper card the tint would vanish, so lift it a shade */
+.card .brand-bullet::before {
+  background: var(--paper2);
+}
+
+/* ============================================================
+   Build with us — the two public tracks
+   ============================================================ */
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 26px;
+  margin-top: 48px;
+  align-items: stretch;
+}
+/* Padding is passed inline from the Card component, which sets its own default
+   inline and would otherwise win over anything declared here. */
+.track-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.track-card__title {
+  color: var(--f);
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.track-card__body {
+  color: var(--read);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.track-card__note {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+.track-card__body:last-of-type {
+  margin-bottom: 28px;
+}
+
+/* ============================================================
+   Open roles — full-width slanted rows beneath the two tracks.
+   Short enough that the skew stays gentle, so these sit wider than the cards
+   above without the slab leaning away from the copy.
+   ============================================================ */
+.roles-block {
+  margin-top: 78px;
+}
+.roles-block__title {
+  color: var(--f);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+.roles-block__sub {
+  color: var(--read);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 30px;
+}
+.roles-list {
+  display: grid;
+  gap: 18px;
+}
+.role-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 56px;
+  gap: 22px;
+  padding: 32px 48px;
+  transition: transform 0.25s ease;
 }
-@media (min-width: 860px) {
-  .ventures-cols {
-    grid-template-columns: 1.6fr 1fr;
+.role-row::before {
+  background: var(--paper);
+  box-shadow: 0 12px 30px -18px rgba(12, 58, 33, 0.3);
+}
+.role-row:hover {
+  transform: translateY(-4px);
+}
+.role-row:hover::before {
+  box-shadow: 0 28px 56px -24px rgba(12, 58, 33, 0.48);
+}
+@media (min-width: 880px) {
+  .role-row {
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    align-items: center;
+  }
+}
+.role-row__project {
+  display: inline-block;
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 10px;
+}
+.role-row__role {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--f);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+}
+.role-row__body {
+  color: var(--read);
+  font-size: 15.5px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+.role-row__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding-top: 4px;
+}
+@media (min-width: 880px) {
+  .role-row__side {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+  }
+}
+.role-row__equity-label {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.role-row__equity {
+  color: var(--read);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.role-row__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--f);
+  font-size: 14px;
+  font-weight: 600;
+  transition: gap 0.22s ease;
+}
+.role-row:hover .role-row__cta {
+  gap: 13px;
+}
+
+/* ============================================================
+   Engineering partner — Harika Labs, on its own surface
+   ============================================================ */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 40px;
+}
+@media (min-width: 900px) {
+  .partner-grid {
+    grid-template-columns: 1fr 1fr;
     gap: 64px;
     align-items: start;
   }
 }
-.ventures-group-head {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-.ventures-group-head h3 {
-  font-family: var(--font-cal), system-ui, sans-serif;
-  font-size: 1.4rem;
+.partner-title {
+  color: var(--f);
+  font-size: clamp(2rem, 4.2vw, 2.9rem);
   letter-spacing: -0.8px;
-  color: var(--f);
+  line-height: 1.05;
+  margin-bottom: 26px;
+  max-width: 520px;
 }
-.ventures-group-head span {
-  font-size: 13px;
-  color: var(--ink);
-}
-.venture-list {
-  border-top: 1px solid var(--line);
-}
-.venture-row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 22px;
-  padding: 30px 16px;
-  padding-left: 16px;
-  border-bottom: 1px solid var(--line);
-  transition: padding-left 0.3s ease, background 0.3s ease;
-}
-.venture-row:hover {
-  padding-left: 30px;
-  background: var(--paper2);
-}
-.venture-name {
-  font-family: var(--font-cal), system-ui, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
-  letter-spacing: -1px;
-  color: var(--f);
-}
-.venture-desc {
+.partner-body {
   color: var(--read);
-  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
-  line-height: 1.5;
-  margin-top: 4px;
+  font-size: 1.12rem;
+  line-height: 1.65;
+  max-width: 540px;
 }
-@media (max-width: 720px) {
-  .venture-row {
-    grid-template-columns: auto 1fr;
-    row-gap: 10px;
+
+/* ============================================================
+   Studio clarifier — "a studio, not a fund".
+   Heading on its own row, three points in a single row beneath, so the last
+   point is never left stranded in an empty quadrant.
+   ============================================================ */
+.clarifier-head {
+  max-width: 620px;
+  margin-bottom: 56px;
+}
+.clarifier-title {
+  color: var(--f);
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  letter-spacing: -0.8px;
+  line-height: 1.05;
+  margin-top: 24px;
+}
+.clarifier-points {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 780px) {
+  .clarifier-points {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 44px;
   }
-  .venture-row .venture-status {
-    grid-column: 2;
-  }
+}
+.clarifier-point__title {
+  color: var(--f);
+  font-size: 1.2rem;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+.clarifier-point__body {
+  color: var(--read);
+  font-size: 15.5px;
+  line-height: 1.62;
 }
 
 /* ============================================================
@@ -494,8 +911,14 @@ a { color: inherit; text-decoration: none; }
 }
 @media (min-width: 760px) {
   .footer-grid {
-    grid-template-columns: 1.4fr repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+  }
+}
+@media (min-width: 1040px) {
+  .footer-grid {
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    gap: 34px;
   }
 }
 .footer-col h4 {
@@ -709,15 +1132,26 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-cal), system-ui, sans-serif;
   color: var(--f);
   font-size: clamp(2rem, 5vw, 2.8rem);
-  letter-spacing: -1.5px;
+  letter-spacing: -0.8px;
   line-height: 1.05;
 }
+/* Major part heading, for documents carrying more than one instrument: the
+   Tick Down page bundles Terms and Privacy under a single h1. */
 .legal h2 {
   font-family: var(--font-cal), system-ui, sans-serif;
   color: var(--f);
-  font-size: 1.35rem;
-  letter-spacing: -0.5px;
-  margin: 44px 0 12px;
+  font-size: 1.85rem;
+  letter-spacing: -0.4px;
+  margin: 62px 0 8px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+.legal h3 {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  color: var(--f);
+  font-size: 1.22rem;
+  letter-spacing: -0.2px;
+  margin: 36px 0 10px;
 }
 .legal p,
 .legal li {
@@ -743,6 +1177,530 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink);
   font-size: 14px;
   margin-bottom: 4px;
+}
+
+/* ============================================================
+   Seedcraft Games — a distinct room in the same house.
+   Same mark, same slant, deeper surface and a warm accent so a publisher
+   reads it as a games studio rather than a side project.
+   ============================================================ */
+:root {
+  --game-a: #f2b134;   /* games accent — warm, playful */
+  --game-s: #102a1c;   /* games surface — deeper than --d */
+  --game-s2: #0a1f14;  /* games surface, darker band */
+}
+
+.games-surface {
+  background: var(--game-s);
+  color: #fff;
+}
+
+/* Lockup: parent mark + wordmark, hairline, then "Games" in the accent */
+.games-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.games-lockup__word {
+  letter-spacing: -0.5px;
+  line-height: 1;
+  transform: translateY(1px);
+}
+.games-lockup__rule {
+  width: 1px;
+  background: currentColor;
+  opacity: 0.3;
+  margin: 0 2px;
+}
+.games-lockup__games {
+  color: var(--game-a);
+  letter-spacing: -0.5px;
+  line-height: 1;
+  transform: translateY(1px);
+}
+
+/* Games page header */
+.games-nav {
+  background: var(--game-s2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 16px 0;
+}
+.games-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.games-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.games-nav__links a {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.games-nav__links a:hover {
+  color: var(--game-a);
+}
+.games-nav__parent {
+  padding-left: 22px;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  opacity: 0.75;
+}
+.games-nav__parent:hover {
+  color: #fff !important;
+}
+
+/* Home-page games band */
+.games-band {
+  background: var(--game-s);
+  color: #fff;
+  padding: 120px 0;
+}
+.games-band__head {
+  max-width: 640px;
+  margin-bottom: 52px;
+}
+.games-band__tagline {
+  font-family: var(--font-cal), system-ui, sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  letter-spacing: -0.8px;
+  line-height: 1.05;
+  color: #fff;
+  margin: 26px 0 16px;
+}
+.games-band__intro {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.02rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+}
+.games-band__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 26px;
+  align-items: stretch;
+}
+.games-band__grid > * {
+  height: 100%;
+}
+.game-teaser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 36px 50px 32px;
+}
+.game-teaser__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.game-teaser__platforms {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.game-teaser__name {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  letter-spacing: -0.5px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.game-teaser__tagline {
+  color: var(--game-a);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.game-teaser__blurb {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.game-teaser__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  transition: gap 0.22s ease;
+}
+.game-teaser:hover .game-teaser__link {
+  gap: 12px;
+  color: var(--game-a);
+}
+.games-band__foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 26px;
+  margin-top: 48px;
+}
+.games-band__pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-weight: 600;
+  transition: gap 0.22s ease, color 0.22s ease;
+}
+.games-band__pub-link:hover {
+  gap: 13px;
+  color: var(--game-a);
+}
+
+/* Games hub */
+.games-hero {
+  padding: 96px 0 72px;
+}
+.games-hero__title {
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  letter-spacing: -1.1px;
+  line-height: 1.02;
+  color: #fff;
+  margin: 30px 0 20px;
+}
+.games-hero__intro {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+  line-height: 1.6;
+  max-width: 620px;
+}
+.games-hero__parent {
+  margin-top: 26px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.games-list {
+  padding: 0 0 96px;
+}
+.game-row {
+  display: grid;
+  grid-template-columns: 170px 1fr auto;
+  align-items: center;
+  gap: 30px;
+  padding: 34px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  transition: padding-left 0.3s ease, background 0.3s ease;
+}
+.games-list > div > *:last-child .game-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.game-row:hover {
+  padding-left: 32px;
+  background: rgba(255, 255, 255, 0.035);
+}
+.game-row__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.game-row__platforms {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+.game-row__name {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+.game-row__tagline {
+  color: var(--game-a);
+  font-size: 15.5px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.game-row__blurb {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 8px;
+  max-width: 560px;
+}
+.game-row__link {
+  display: flex;
+  color: var(--game-a);
+  transition: transform 0.25s ease;
+}
+/* A title with no page yet: says so, and stops behaving like a link. */
+.game-row--soon {
+  cursor: default;
+}
+.game-row--soon:hover {
+  padding-left: 18px;
+  background: none;
+}
+.game-row__soon,
+.game-teaser__soon {
+  font-family: var(--font-figtree), system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+.game-teaser__soon {
+  margin-top: auto;
+  padding-top: 26px;
+}
+.game-teaser--soon {
+  cursor: default;
+}
+.game-teaser--soon:hover {
+  transform: none;
+}
+.game-teaser--soon:hover::before {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+.game-row:hover .game-row__link {
+  transform: translateX(6px);
+}
+@media (max-width: 760px) {
+  .game-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .game-row__meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+  .game-row__link {
+    display: none;
+  }
+}
+
+/* Publishers block */
+.games-publishers {
+  background: var(--game-s2);
+  padding: 104px 0;
+}
+.games-publishers__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 920px) {
+  .games-publishers__grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 72px;
+    align-items: start;
+  }
+}
+.games-publishers__label {
+  color: var(--game-a);
+  margin-bottom: 18px;
+}
+.games-publishers__title {
+  font-size: clamp(2rem, 4.4vw, 2.9rem);
+  letter-spacing: -0.8px;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 22px;
+  max-width: 560px;
+}
+.games-publishers__body {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(1.02rem, 1.6vw, 1.15rem);
+  line-height: 1.65;
+  max-width: 560px;
+}
+.games-publishers__body + .games-publishers__body {
+  margin-top: 16px;
+}
+.games-publishers__points {
+  display: grid;
+  gap: 32px;
+}
+
+/* Individual game page */
+.game-hero {
+  padding: 84px 0 56px;
+}
+.game-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 30px;
+  transition: color 0.2s ease;
+}
+.game-back:hover {
+  color: var(--game-a);
+}
+.game-hero__name {
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  letter-spacing: -1.4px;
+  line-height: 0.98;
+  color: #fff;
+}
+.game-hero__tagline {
+  color: var(--game-a);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 20px 0 26px;
+  max-width: 620px;
+}
+.game-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.game-hero__platforms {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.game-shots {
+  padding: 20px 0 40px;
+}
+.game-shots__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(45%, 200px), 1fr));
+  gap: 22px;
+  max-width: 940px;
+}
+/* Plain screenshot frame. Deliberately NOT the brand parallelogram: a store
+   screenshot cropped on the slant loses UI at the corners. */
+.game-shot {
+  position: relative;
+  /* 1:2, matching the 1080x2160 store screens. A 9/16 frame cropped the
+     headline off the top of every one of them. */
+  aspect-ratio: 1 / 2;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 22px 50px -26px rgba(0, 0, 0, 0.75);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.game-shot:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 34px 66px -26px rgba(0, 0, 0, 0.85);
+}
+.game-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.game-shot--empty {
+  background: linear-gradient(150deg, rgba(242, 177, 52, 0.16), rgba(10, 31, 20, 0.9));
+}
+.game-shots__note {
+  margin-top: 22px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.42);
+}
+.game-shots__note code {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.game-body {
+  padding: 72px 0 96px;
+}
+.game-body__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 52px;
+}
+@media (min-width: 920px) {
+  .game-body__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+    align-items: start;
+  }
+}
+.game-body__copy p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  line-height: 1.68;
+  max-width: 560px;
+}
+.game-body__copy p + p {
+  margin-top: 20px;
+}
+.game-body__legal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  transition: gap 0.22s ease, color 0.22s ease;
+}
+.game-body__legal:hover {
+  gap: 13px;
+  color: var(--game-a);
+}
+.game-highlights {
+  display: grid;
+  gap: 32px;
+}
+.game-highlight__title {
+  font-size: 1.18rem;
+  letter-spacing: -0.3px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.game-highlight__body {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.game-cta {
+  padding: 0 0 110px;
+}
+.game-cta__slab {
+  padding: clamp(40px, 6vw, 64px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+}
+.game-cta__slab::before {
+  background: linear-gradient(315deg, #f2b134 0%, #b9701c 52%, #3d2408 100%);
+  box-shadow: 0 34px 80px -44px rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+}
+.game-cta__title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.8px;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.game-cta__body {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  max-width: 440px;
+  margin-bottom: 30px;
 }
 
 /* ============================================================

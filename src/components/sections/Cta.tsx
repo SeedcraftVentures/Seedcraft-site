@@ -34,8 +34,7 @@ export function Cta() {
         <Reveal>
           <div
             ref={ref}
-            className="shape glow-slab cta-glow"
-            data-cursor="light"
+            className="shape glow-slab cta-glow"
             style={{ maxWidth: 1000, margin: '0 auto' }}
           >
           {inView || reduce ? (
@@ -45,7 +44,7 @@ export function Cta() {
           )}
           <h2
             className="font-display"
-            style={{ color: '#fff', fontSize: 'clamp(1.9rem, 4.5vw, 3rem)', letterSpacing: '-1.5px', margin: '22px 0 14px' }}
+            style={{ color: '#fff', fontSize: 'clamp(1.9rem, 4.5vw, 3rem)', letterSpacing: '-0.8px', margin: '22px 0 14px' }}
           >
             {cta.title}
           </h2>

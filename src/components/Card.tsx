@@ -27,7 +27,7 @@ export function Card({
     .join(' ')
 
   return (
-    <div className={cls} style={{ padding: '30px 32px', ...style }} {...rest}>
+    <div className={cls} style={{ padding: '34px 46px', ...style }} {...rest}>
       {children}
     </div>
   )
