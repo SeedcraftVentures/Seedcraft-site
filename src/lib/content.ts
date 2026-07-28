@@ -178,8 +178,6 @@ export const ventures = {
     { key: 'building', label: 'Building' },
     { key: 'early', label: 'Early' },
   ],
-  // NOTE: Escapage (Creative tools) and Vent (Consumer insight) are my
-  // suggested categories, not yours. Change them if they are off.
   items: [
     {
       name: 'HiddenGem',
@@ -193,7 +191,7 @@ export const ventures = {
     {
       name: 'Shiftly',
       desc: 'Fair shifts in a couple of clicks.',
-      category: 'SaaS',
+      category: 'Workforce SaaS',
       platform: 'Web and mobile',
       status: { label: 'Final push', tone: 'building' },
       stage: 'building',
