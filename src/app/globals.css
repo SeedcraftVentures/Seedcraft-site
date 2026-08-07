@@ -2151,8 +2151,7 @@ a.venture-card:hover .venture-card__link {
 /* Google Play badge. Their artwork, unmodified per their brand guidelines, so
    the only thing we style is the clear space and the hover lift. */
 .game-hero__store {
-  margin-top: 26px;
-  margin-left: -14px;
+  margin-top: 10px;
 }
 .play-badge {
   display: inline-flex;

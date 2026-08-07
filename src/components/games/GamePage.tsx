@@ -136,7 +136,7 @@ export function GamePage({ game }: { game: Game }) {
                 </p>
                 {game.storeHref && (
                   <div style={{ marginBottom: 26 }}>
-                    <PlayBadge href={game.storeHref} height={52} />
+                    <PlayBadge href={game.storeHref} height={88} align="centre" />
                   </div>
                 )}
                 <Button href={publishers.cta.href} variant="cream" size="lg">
