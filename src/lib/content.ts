@@ -293,7 +293,7 @@ export const buildWithUs = {
       {
         role: 'Creative Producer (Marketing)',
         project: 'Seedcraft Games',
-        body: 'Tick Down is in testing and in publisher conversations, with Crossword Hero behind it. This is the person who builds the audience: store presence, trailers, community, and the campaign around a launch.',
+        body: 'Tick Down is live on Google Play, with Crossword Hero behind it. This is the person who builds the audience: store presence, trailers, community, and the campaign around a launch.',
         equity: 'A mix of project equity and studio options.',
         href: 'mailto:andre@seedcraft.co?subject=Creative%20Producer,%20Seedcraft%20Games',
       },

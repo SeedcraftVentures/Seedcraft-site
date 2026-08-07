@@ -61,7 +61,7 @@ export const games: Game[] = [
       'You choose how long you have got. Three rounds for a coffee break, or eleven for a marathon, at easy, normal or hard. A daily challenge of three seeded puzzles runs alongside it, with a streak to keep alive and eighty one trophies behind that.',
       'It plays offline and keeps your progress on the device. There is no account and no sign-up, and the only thing that ever leaves the phone is a display name and a score, if you choose to join the leaderboards. That was a product decision rather than a shortcut, and it is a large part of why the game feels quick to open and quick to trust.',
     ],
-    status: { label: 'In testing', tone: 'building' },
+    status: { label: 'Launched', tone: 'live' },
     platforms: ['Android'],
     highlights: [
       {
@@ -85,6 +85,7 @@ export const games: Game[] = [
         body: 'Full game with no account and no tracking, so it works on a train. Leaderboards are opt in, and a player can delete their entry from inside the app.',
       },
     ],
+    storeHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.ticker',
     shots: [
       {
         src: '/Images/games/tick-down/home.png',
@@ -160,7 +161,7 @@ export const publishers = {
   label: 'For publishers',
   title: 'We are open to publishing conversations.',
   body: [
-    'Seedcraft Games is small, fast and owns its work outright. Tick Down is built, in testing, and ready to talk about. Crossword Hero is in development behind it.',
+    'Seedcraft Games is small, fast and owns its work outright. Tick Down is live on Google Play. Crossword Hero is in development behind it.',
     'If you publish short-session titles and want to talk about either, or about what we build next, the door is open.',
   ],
   points: [

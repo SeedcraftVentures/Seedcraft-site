@@ -6,6 +6,7 @@ import { publishers } from '@/lib/games'
 import { GamesNav } from './GamesNav'
 import { Footer } from '../sections/Footer'
 import { StatusTag } from '../Tag'
+import { PlayBadge } from './PlayBadge'
 import { BrandBullet } from '../BrandBullet'
 import { Button } from '../Button'
 import { Reveal } from '../Reveal'
@@ -36,6 +37,12 @@ export function GamePage({ game }: { game: Game }) {
               <StatusTag status={game.status} />
               <span className="game-hero__platforms">{game.platforms.join(', ')}</span>
             </div>
+
+            {game.storeHref && (
+              <div className="game-hero__store">
+                <PlayBadge href={game.storeHref} />
+              </div>
+            )}
           </div>
         </section>
 
@@ -123,9 +130,15 @@ export function GamePage({ game }: { game: Game }) {
                   Interested in {game.name}?
                 </h2>
                 <p className="game-cta__body">
-                  We are open to publishing conversations and happy to get a build in
-                  your hands.
+                  {game.storeHref
+                    ? 'It is out there and you can play it now. We are also open to publishing conversations, about this one and about what comes next.'
+                    : 'We are open to publishing conversations and happy to get a build in your hands.'}
                 </p>
+                {game.storeHref && (
+                  <div style={{ marginBottom: 26 }}>
+                    <PlayBadge href={game.storeHref} height={52} />
+                  </div>
+                )}
                 <Button href={publishers.cta.href} variant="cream" size="lg">
                   {publishers.cta.label}
                 </Button>
