@@ -37,6 +37,7 @@ export interface Game {
    */
   pageReady: boolean
   privacyHref?: string
+  supportHref?: string
   storeHref?: string
 }
 
@@ -124,6 +125,56 @@ export const games: Game[] = [
     privacyHref: '/games/tick-down/privacy',
   },
   {
+    // The /games/wordlore, /privacy and /support URLs are compiled into the app
+    // and submitted to the Play Console. They must never move. The page itself
+    // is bespoke (src/components/games/wordlore), so body and highlights here
+    // feed the hub, the home band and the page's own copy.
+    slug: 'wordlore',
+    name: 'Wordlore: Norse Saga',
+    tagline: 'Carve runes. Read words. Free the Nine Realms.',
+    blurb: 'A turn-based word duel of dice and runes, across 130 stones of Norse myth.',
+    body: [
+      'The gods of shadow hold the Nine Realms. Wordlore is how you win them back: a turn-based duel of dice, runes and words, one carved stone at a time.',
+      'Every stone is a small crossword written in runes. Roll to learn which rune is which letter, carve letters for points, and read whole words for more. Carve the last letter of a word, though, and your rival can read it first.',
+      'The saga runs from Midgard to Helheim across 130 stones, with a patron god to free in every realm, a new Daily Rune puzzle each day, and Barrow Raids against the draugr and the clock.',
+    ],
+    status: { label: 'Launching soon', tone: 'soon' },
+    platforms: ['Android', 'iOS later'],
+    highlights: [
+      {
+        title: 'Two actions, one decision',
+        body: 'Roll, carve or read, twice a turn. Every carve helps you and might hand your rival the word, which is what makes a quiet turn tense.',
+      },
+      {
+        title: 'A saga, not a level list',
+        body: 'Nine realms, nine usurpers and 130 stones, each realm with its own patron, palette and curse. Progress reads as a story rather than a number.',
+      },
+      {
+        title: 'Reasons to come back',
+        body: 'A seeded Daily Rune with par and a streak, Barrow Raids against the clock, and patrons, relics and wards to build around.',
+      },
+      {
+        title: 'Fair to play free',
+        body: 'Ads are optional and rewarded, purchases are optional, and progress stays on the phone with no account to make.',
+      },
+    ],
+    shots: [
+      { src: '/Images/games/wordlore/stone.jpg', alt: 'A stone in Alfheim: a rune crossword, the score against Gunnhild, and the Roll, Guess, Carve and End turn actions' },
+      { src: '/Images/games/wordlore/boss.jpg', alt: 'A boss stone in Jotunheim against Hrungnir, with runes still to be read' },
+      { src: '/Images/games/wordlore/home.jpg', alt: 'The saga home screen: Jotunheim, act one, with the Daily Rune, Barrow Raids, Realms, Market and Bag' },
+      { src: '/Images/games/wordlore/realms.jpg', alt: 'The Nine Realms map, four of nine freed, with the warriors and boss of Jotunheim' },
+      { src: '/Images/games/wordlore/prepare.jpg', alt: 'Preparing for a stone: choosing a patron, relics and wards' },
+      { src: '/Images/games/wordlore/daily.jpg', alt: 'The Daily Rune: slide the stones until the rune is whole' },
+      { src: '/Images/games/wordlore/raid.jpg', alt: 'A Barrow Raid against the draugr, with a six minute clock' },
+      { src: '/Images/games/wordlore/result.jpg', alt: 'A stone won: stars earned and hacksilver collected' },
+    ],
+    pageReady: true,
+    privacyHref: '/games/wordlore/privacy',
+    supportHref: '/games/wordlore/support',
+    // Set when the listing is live:
+    // storeHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.wordlore',
+  },
+  {
     slug: 'crossword-hero',
     name: 'Crossword Hero',
     tagline: 'An anagram crossword. Unscramble the letters, fill the grid.',
@@ -161,8 +212,8 @@ export const publishers = {
   label: 'For publishers',
   title: 'We are open to publishing conversations.',
   body: [
-    'Seedcraft Games is small, fast and owns its work outright. Tick Down is live on Google Play. Crossword Hero is in development behind it.',
-    'If you publish short-session titles and want to talk about either, or about what we build next, the door is open.',
+    'Seedcraft Games is small, fast and owns its work outright. Tick Down is live on Google Play, Wordlore: Norse Saga launches next, and Crossword Hero is in development behind them.',
+    'If you publish short-session titles and want to talk about any of them, or about what we build next, the door is open.',
   ],
   points: [
     { title: 'Built, not pitched', body: 'Playable products, not concept decks.' },

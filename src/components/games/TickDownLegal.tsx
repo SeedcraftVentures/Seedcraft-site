@@ -8,7 +8,8 @@ import { GamesLockup } from './GamesLockup'
  * the earlier local-first-only policy: the App now has optional online
  * leaderboards backed by Supabase. Wording is kept as supplied, with em-dashes
  * rewritten to commas, colons or full stops for the brand rule. No clause,
- * obligation or disclosure has been altered.
+ * obligation or disclosure has been altered. The one correction since is the
+ * legal name: Seedcraft Ventures Ltd, confirmed on 28 September 2026.
  *
  * Rendered by both the canonical route and the legacy /games/ticker/privacy
  * path that went to the Play Console, so no published link can break.
@@ -38,7 +39,7 @@ export function TickDownLegal() {
 
             <p style={{ marginTop: 24 }}>
               Tick Down (the &quot;App&quot;) is developed by{' '}
-              <strong>Seedcraft Ventures</strong> (&quot;we&quot;, &quot;us&quot;). This policy
+              <strong>Seedcraft Ventures Ltd</strong> (&quot;we&quot;, &quot;us&quot;). This policy
               explains what information the App does and does not handle. In short: the App is{' '}
               <strong>free, offline, and stores your game progress only on your device</strong>.
               The one exception is the <strong>optional online leaderboards</strong>. If you
@@ -136,7 +137,7 @@ export function TickDownLegal() {
 
             <h3>The App</h3>
             <p>
-              Tick Down is a free puzzle game provided by <strong>Seedcraft Ventures</strong> for
+              Tick Down is a free puzzle game provided by <strong>Seedcraft Ventures Ltd</strong> for
               your personal, non-commercial entertainment. We may add, change or remove features at
               any time.
             </p>
@@ -181,7 +182,7 @@ export function TickDownLegal() {
             <h3>No warranty</h3>
             <p>
               The App is provided &quot;as is&quot;, without warranties of any kind. To the fullest
-              extent permitted by law, Seedcraft Ventures is not liable for any indirect or
+              extent permitted by law, Seedcraft Ventures Ltd is not liable for any indirect or
               consequential loss arising from your use of the App. Nothing in these terms limits
               liability that cannot be limited by law.
             </p>
@@ -218,7 +219,7 @@ export function TickDownLegal() {
             gap: 10,
           }}
         >
-          <span>© 2026 Seedcraft Ventures</span>
+          <span>© 2026 Seedcraft Ventures Ltd</span>
           <Link href="/" style={{ color: 'rgba(255,255,255,0.8)' }}>
             seedcraft.co
           </Link>

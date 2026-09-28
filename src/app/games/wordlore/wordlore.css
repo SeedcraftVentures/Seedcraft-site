@@ -1,0 +1,724 @@
+/* ============================================================
+   Wordlore: Norse Saga, the game's own room.
+   Navy ground, limestone, runelight and gold, from the game's tokens
+   (Runestone src/ui/tokens.ts). Loaded only by the /games/wordlore layout
+   and scoped to .wl-* so nothing leaks into the rest of the site.
+   ============================================================ */
+.wl {
+  --wl-navy: #0d1c26;
+  --wl-deep: #07121a;
+  --wl-panel: #141b23;
+  --wl-rune: #96dcf1;
+  --wl-bone: #efe8da;
+  --wl-stone: #c4b6a7;
+  --wl-gold: #f2c66a;
+  --wl-muted: #8c939a;
+  --wl-rule: rgba(196, 182, 167, 0.16);
+  /* Fine grain so flat panels read as stone, as the game draws them in Skia */
+  --wl-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wl-surface,
+.wl-doc {
+  background: var(--wl-deep);
+  color: var(--wl-bone);
+  font-family: var(--font-source-sans), var(--font-figtree), system-ui, sans-serif;
+}
+.wl-glow {
+  color: var(--wl-rune);
+  text-shadow: 0 0 18px rgba(150, 220, 241, 0.45);
+}
+.wl-eyebrow {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--wl-gold);
+  margin-bottom: 16px;
+}
+.wl-h2 {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: 0.2px;
+  color: var(--wl-bone);
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+.wl-h3 {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  color: var(--wl-bone);
+  margin-bottom: 10px;
+}
+.wl-lede {
+  color: rgba(239, 232, 218, 0.78);
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  line-height: 1.65;
+  max-width: 620px;
+}
+
+/* Carved stone panel */
+.wl-slab {
+  position: relative;
+  background: var(--wl-grain), linear-gradient(180deg, #1c2833 0%, var(--wl-panel) 100%);
+  border: 1px solid var(--wl-rule);
+  border-radius: 16px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    0 26px 50px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* Screenshot bezel: the limestone rim the game puts round its board */
+.wl-frame {
+  position: relative;
+  padding: 6px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #d9cebf 0%, #8f8579 45%, #4d4740 100%);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.wl-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+.wl-frame--sm {
+  padding: 4px;
+  border-radius: 14px;
+}
+.wl-frame--sm img {
+  border-radius: 11px;
+}
+
+/* Rune ring, from the game's home backdrop */
+.wl-ring {
+  pointer-events: none;
+  animation: wl-turn 240s linear infinite;
+}
+.wl-ring__line {
+  fill: none;
+  stroke: rgba(150, 220, 241, 0.1);
+  stroke-width: 1;
+}
+.wl-ring__runes {
+  font-family: var(--font-runic), serif;
+  font-size: 30px;
+  fill: rgba(150, 220, 241, 0.16);
+}
+@keyframes wl-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hero */
+.wl-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 0 96px;
+  background: radial-gradient(ellipse at 72% 42%, #1b3a4a 0%, var(--wl-navy) 45%, var(--wl-deep) 100%);
+}
+.wl-hero__ring {
+  position: absolute;
+  width: min(900px, 130vw);
+  height: auto;
+  right: -180px;
+  top: 50%;
+  translate: 0 -50%;
+}
+.wl-hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (min-width: 920px) {
+  .wl-hero__inner {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 48px;
+  }
+}
+.wl-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(239, 232, 218, 0.6);
+  margin-bottom: 26px;
+  transition: color 0.2s ease;
+}
+.wl-back:hover {
+  color: var(--wl-rune);
+}
+/* The wordmark PNG keeps a little transparent margin for the rune glow;
+   pull it back to the text edge */
+.wl-hero__title {
+  margin: 0 0 22px -11px;
+}
+.wl-hero__wordmark {
+  width: min(520px, 100%);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
+}
+.wl-hero__tagline {
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  line-height: 1.4;
+  color: var(--wl-bone);
+  margin-bottom: 16px;
+}
+.wl-hero__lede {
+  color: rgba(239, 232, 218, 0.74);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  max-width: 470px;
+  margin-bottom: 26px;
+}
+.wl-hero__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.wl-chip {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wl-deep);
+  background: linear-gradient(180deg, #f6d68b, #c9982f);
+  padding: 7px 14px 6px;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.wl-hero__platforms {
+  font-size: 14px;
+  color: rgba(239, 232, 218, 0.6);
+}
+.wl-hero__store {
+  margin-top: 14px;
+}
+.wl-hero__soon {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--wl-muted);
+}
+@media (min-width: 920px) {
+  .wl-hero__art .wl-frame {
+    transform: perspective(1400px) rotateY(-5deg);
+  }
+}
+
+/* A turn */
+.wl-turn {
+  padding: 104px 0 88px;
+}
+.wl-turn__grid {
+  list-style: none;
+  padding: 0;
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 22px;
+}
+.wl-turn__grid > * {
+  height: 100%;
+}
+.wl-turn__step {
+  height: 100%;
+  padding: 30px 30px 32px;
+}
+.wl-turn__step p {
+  color: rgba(239, 232, 218, 0.72);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.wl-turn__rune {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  font-family: var(--font-runic), serif;
+  font-size: 30px;
+  color: var(--wl-rune);
+  text-shadow: 0 0 14px rgba(150, 220, 241, 0.7);
+  background: var(--wl-grain), linear-gradient(180deg, #2b3640, #161e26);
+  border: 1px solid rgba(150, 220, 241, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 24px -6px rgba(150, 220, 241, 0.35);
+}
+
+/* Screens: a snap strip that starts on the content edge and bleeds right */
+.wl-screens {
+  padding: 40px 0 96px;
+  --wl-edge: max(24px, calc((100vw - var(--maxw)) / 2 + 40px));
+}
+.wl-screens__strip {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px var(--wl-edge) 26px;
+  scroll-padding: 0 var(--wl-edge);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(196, 182, 167, 0.3) transparent;
+}
+.wl-screens__strip:focus-visible {
+  outline: 2px solid var(--wl-rune);
+  outline-offset: -2px;
+}
+.wl-screen {
+  flex: 0 0 min(84vw, 640px);
+  scroll-snap-align: start;
+  margin: 0;
+}
+.wl-screen figcaption {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.wl-screen__title {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+.wl-screen__line {
+  font-size: 15px;
+  color: rgba(239, 232, 218, 0.65);
+}
+
+/* Realms */
+.wl-realms {
+  padding: 104px 0;
+  background: radial-gradient(ellipse at 20% 0%, #17303f 0%, transparent 55%), var(--wl-navy);
+}
+.wl-realms__grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 18px;
+}
+.wl-realms__grid > * {
+  height: 100%;
+}
+.wl-realm {
+  position: relative;
+  height: 100%;
+  padding: 24px 26px 26px;
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    var(--wl-grain),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--r-stone) 55%, transparent) 0%, transparent 65%),
+    var(--r-ground);
+  border: 1px solid color-mix(in srgb, var(--r-accent) 22%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 22px 40px -28px rgba(0, 0, 0, 0.9);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.wl-realm:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--r-accent) 55%, transparent);
+}
+.wl-realm__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.wl-realm__numeral {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: var(--r-accent);
+}
+.wl-realm__stones {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(239, 232, 218, 0.55);
+}
+.wl-realm__runes {
+  font-family: var(--font-runic), serif;
+  font-size: 17px;
+  letter-spacing: 4px;
+  color: var(--r-accent);
+  opacity: 0.75;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--r-accent) 50%, transparent);
+  margin-bottom: 2px;
+}
+.wl-realm__name {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 1.55rem;
+  letter-spacing: 1.5px;
+  color: var(--wl-bone);
+  margin-bottom: 10px;
+}
+.wl-realm__who {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(239, 232, 218, 0.62);
+}
+.wl-realm__who strong {
+  color: rgba(239, 232, 218, 0.9);
+  font-weight: 600;
+}
+
+/* Beyond the saga */
+.wl-beyond {
+  padding: 104px 0 88px;
+}
+.wl-beyond__grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 34px;
+}
+.wl-beyond__item .wl-frame {
+  margin-bottom: 22px;
+}
+.wl-beyond__item p {
+  color: rgba(239, 232, 218, 0.72);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+/* Fair play */
+.wl-fair {
+  padding: 24px 0 96px;
+}
+.wl-fair__slab {
+  padding: clamp(30px, 5vw, 56px);
+  display: grid;
+  gap: 36px;
+}
+@media (min-width: 920px) {
+  .wl-fair__slab {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+.wl-fair__title {
+  margin-bottom: 24px;
+}
+.wl-fair__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  max-width: 640px;
+}
+.wl-fair__list li {
+  position: relative;
+  padding-left: 26px;
+  color: rgba(239, 232, 218, 0.74);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.wl-fair__list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  background: var(--wl-rune);
+  box-shadow: 0 0 10px rgba(150, 220, 241, 0.7);
+}
+.wl-fair__list strong {
+  color: var(--wl-bone);
+  font-weight: 600;
+}
+.wl-fair__links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wl-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  font-size: 15.5px;
+  color: var(--wl-rune);
+  transition: gap 0.22s ease, color 0.22s ease;
+}
+.wl-link:hover {
+  gap: 14px;
+  color: var(--wl-bone);
+}
+
+/* Publishers */
+.wl-pub {
+  padding: 40px 0 120px;
+}
+.wl-pub__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 64px;
+  border-top: 1px solid var(--wl-rule);
+}
+.wl-pub__inner .wl-lede {
+  margin-bottom: 30px;
+}
+.wl-pub__rune {
+  font-family: var(--font-runic), serif;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--wl-rune);
+  text-shadow: 0 0 24px rgba(150, 220, 241, 0.8);
+  margin-bottom: 18px;
+}
+.wl-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #2a1c05;
+  padding: 17px 30px 16px;
+  border-radius: 12px;
+  background: var(--wl-grain), linear-gradient(180deg, #f0c768 0%, #c4912c 100%);
+  border: 1px solid #8a6419;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 16px 30px -16px rgba(242, 198, 106, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 22px 36px -16px rgba(242, 198, 106, 0.75);
+}
+
+/* Policy and support pages */
+.wl-doc {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at 50% -10%, #17303f 0%, transparent 55%), var(--wl-deep);
+}
+.wl-dochead {
+  border-bottom: 1px solid var(--wl-rule);
+  padding: 12px 0;
+}
+.wl-dochead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 20px;
+  flex-wrap: wrap;
+}
+.wl-dochead__mark {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin-left: -4px;
+}
+.wl-dochead__links {
+  display: flex;
+  gap: 22px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.wl-dochead__links a {
+  color: rgba(239, 232, 218, 0.7);
+  transition: color 0.2s ease;
+}
+.wl-dochead__links a:hover,
+.wl-dochead__links a[aria-current='page'] {
+  color: var(--wl-rune);
+}
+.wl-doc__body {
+  flex: 1;
+  padding: 64px 0 100px;
+}
+.wl-legal {
+  max-width: 720px;
+  margin: 0 auto;
+  color: rgba(239, 232, 218, 0.84);
+}
+.wl-legal__kicker {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--wl-gold);
+  margin-bottom: 10px !important;
+}
+.wl-legal h1 {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  line-height: 1.1;
+  color: var(--wl-bone);
+  margin-bottom: 14px;
+}
+.wl-legal h2 {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.6px;
+  color: var(--wl-bone);
+  margin: 46px 0 12px;
+}
+.wl-legal p,
+.wl-legal li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.wl-legal p {
+  margin-bottom: 14px;
+}
+.wl-legal ul {
+  padding-left: 22px;
+  margin: 8px 0 16px;
+  list-style: disc;
+}
+.wl-legal li {
+  margin: 6px 0;
+}
+.wl-legal li::marker {
+  color: var(--wl-rune);
+}
+.wl-legal strong {
+  color: var(--wl-bone);
+  font-weight: 600;
+}
+.wl-legal a:not(.wl-link) {
+  color: var(--wl-rune);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.wl-legal__muted {
+  font-size: 14px !important;
+  color: var(--wl-muted);
+  margin-bottom: 28px !important;
+}
+.wl-legal__short {
+  margin: 30px 0 10px;
+  padding: 24px 28px 14px;
+  border-radius: 14px;
+  background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
+  border: 1px solid rgba(150, 220, 241, 0.22);
+}
+.wl-legal .wl-legal__short h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--wl-rune);
+}
+
+/* Support: contact card and FAQ */
+.wl-contact {
+  margin: 30px 0 10px;
+  padding: 26px 28px;
+  border-radius: 14px;
+  background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
+  border: 1px solid var(--wl-rule);
+}
+.wl-contact__label {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 13px !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--wl-gold);
+  margin-bottom: 6px !important;
+}
+.wl-legal a.wl-contact__email {
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 700;
+  text-decoration: none;
+  word-break: break-word;
+}
+.wl-legal a.wl-contact__email:hover {
+  text-decoration: underline;
+}
+.wl-contact__note {
+  margin: 10px 0 0 !important;
+  font-size: 15px !important;
+  color: rgba(239, 232, 218, 0.65);
+}
+.wl-faq {
+  border-top: 1px solid var(--wl-rule);
+}
+.wl-faq__item {
+  border-bottom: 1px solid var(--wl-rule);
+}
+.wl-faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 2px;
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--wl-bone);
+}
+.wl-faq__item summary::-webkit-details-marker {
+  display: none;
+}
+.wl-faq__item summary::after {
+  content: '';
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--wl-rune);
+  border-bottom: 2px solid var(--wl-rune);
+  transform: rotate(45deg) translateY(-3px);
+  transition: transform 0.2s ease;
+}
+.wl-faq__item[open] summary::after {
+  transform: rotate(-135deg) translateY(-3px);
+}
+.wl-faq__item summary:hover {
+  color: var(--wl-rune);
+}
+.wl-faq__item summary:focus-visible {
+  outline: 2px solid var(--wl-rune);
+  outline-offset: 2px;
+}
+.wl-faq__answer {
+  padding: 0 2px 10px;
+}
+.wl-docfoot {
+  border-top: 1px solid var(--wl-rule);
+  padding: 24px 0;
+  font-size: 13.5px;
+  color: var(--wl-muted);
+}
+.wl-docfoot__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.wl-docfoot__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.wl-docfoot__links a {
+  color: rgba(239, 232, 218, 0.72);
+}
+.wl-docfoot__links a:hover {
+  color: var(--wl-rune);
+}

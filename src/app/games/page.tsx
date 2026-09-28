@@ -13,11 +13,11 @@ import { Reveal } from '@/components/Reveal'
 export const metadata: Metadata = {
   title: 'Seedcraft Games · Short sessions, real craft',
   description:
-    'Seedcraft Games is the games house inside Seedcraft Ventures. Tick Down and Crossword Hero, built by the studio that ships.',
+    'Seedcraft Games is the games house inside Seedcraft Ventures. Tick Down, Wordlore: Norse Saga and Crossword Hero, built by the studio that ships.',
   openGraph: {
     title: 'Seedcraft Games · Short sessions, real craft',
     description:
-      'The games house inside Seedcraft Ventures. Tick Down and Crossword Hero.',
+      'The games house inside Seedcraft Ventures. Tick Down, Wordlore: Norse Saga and Crossword Hero.',
     url: 'https://www.seedcraft.co/games',
     siteName: 'Seedcraft Games',
     locale: 'en_GB',
