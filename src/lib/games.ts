@@ -138,8 +138,8 @@ export const games: Game[] = [
       'Every stone is a small crossword written in runes. Roll to learn which rune is which letter, carve letters for points, and read whole words for more. Carve the last letter of a word, though, and your rival can read it first.',
       'The saga runs from Midgard to Helheim across 130 stones, with a patron god to free in every realm, a new Daily Rune puzzle each day, and Barrow Raids against the draugr and the clock.',
     ],
-    status: { label: 'Launching soon', tone: 'soon' },
-    platforms: ['Android', 'iOS later'],
+    status: { label: 'Coming soon', tone: 'soon' },
+    platforms: ['Android', 'iOS'],
     highlights: [
       {
         title: 'Two actions, one decision',
