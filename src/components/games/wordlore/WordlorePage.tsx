@@ -9,6 +9,7 @@ import { PlayBadge } from '../PlayBadge'
 import { Reveal } from '../../Reveal'
 import { WORDLORE, realms, screens, toRunes } from './content'
 import { Glow, RuneRing } from './parts'
+import { WordloreMusic } from './WordloreMusic'
 
 /**
  * Wordlore: Norse Saga. Unlike the shared GamePage, this one is dressed in the
@@ -306,6 +307,7 @@ export function WordlorePage({ game }: { game: Game }) {
         </section>
       </main>
 
+      <WordloreMusic />
       <Footer />
     </>
   )

@@ -517,6 +517,51 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 22px 36px -16px rgba(242, 198, 106, 0.75);
 }
 
+/* Music toggle: a small carved stone in the corner, glowing while it plays */
+.wl-music {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px 11px 13px;
+  border-radius: 12px;
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(239, 232, 218, 0.7);
+  background: var(--wl-grain), linear-gradient(180deg, #2b3640, #161e26);
+  border: 1px solid var(--wl-rule);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 30px -12px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.wl-music:hover {
+  color: var(--wl-bone);
+}
+.wl-music.is-on {
+  color: var(--wl-rune);
+  border-color: rgba(150, 220, 241, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 22px -6px rgba(150, 220, 241, 0.45),
+    0 14px 30px -12px rgba(0, 0, 0, 0.9);
+}
+.wl-music:focus-visible {
+  outline: 2px solid var(--wl-rune);
+  outline-offset: 3px;
+}
+@media (max-width: 520px) {
+  .wl-music__label {
+    display: none;
+  }
+  .wl-music {
+    padding: 12px;
+  }
+}
+
 /* Policy and support pages */
 .wl-doc {
   min-height: 100vh;
