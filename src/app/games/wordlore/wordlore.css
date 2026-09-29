@@ -223,11 +223,6 @@
 .wl-hero__store {
   margin-top: 14px;
 }
-.wl-hero__soon {
-  margin-top: 18px;
-  font-size: 14px;
-  color: var(--wl-muted);
-}
 @media (min-width: 920px) {
   .wl-hero__art .wl-frame {
     transform: perspective(1400px) rotateY(-5deg);

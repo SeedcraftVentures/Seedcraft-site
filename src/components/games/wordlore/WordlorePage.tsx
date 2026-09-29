@@ -95,12 +95,10 @@ export function WordlorePage({ game }: { game: Game }) {
                 <span className="wl-hero__platforms">{game.platforms.join(' · ')}</span>
               </div>
 
-              {game.storeHref ? (
+              {game.storeHref && (
                 <div className="wl-hero__store">
                   <PlayBadge href={game.storeHref} height={80} />
                 </div>
-              ) : (
-                <p className="wl-hero__soon">Coming to Google Play. iOS to follow.</p>
               )}
             </div>
 
