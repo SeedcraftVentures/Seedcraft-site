@@ -17,6 +17,22 @@
   /* Fine grain so flat panels read as stone, as the game draws them in Skia */
   --wl-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+/* Dress the shared Seedcraft Games header, footer and scroll bar in Wordlore's
+   navy and runelight while a Wordlore page is on screen (tokens read in
+   globals.css). :has() means nothing sticks after navigating away. */
+:root:has(.wl) {
+  --chrome-header: #05090d;
+  --chrome-footer: #05090d;
+  --chrome-rule: rgba(150, 220, 241, 0.12);
+  --chrome-accent: #96dcf1;
+  --chrome-progress: #96dcf1;
+}
+:root:has(.wl) body {
+  background: #07121a;
+}
+.wl .site-footer {
+  border-top: 1px solid rgba(150, 220, 241, 0.12);
+}
 .wl-surface,
 .wl-doc {
   background: var(--wl-deep);
