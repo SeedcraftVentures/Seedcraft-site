@@ -10,6 +10,7 @@ import { Reveal } from '../../Reveal'
 import { WORDLORE, realms, screens, toRunes } from './content'
 import { Glow, RuneRing } from './parts'
 import { WordloreMusic } from './WordloreMusic'
+import { WordloreTrailer } from './WordloreTrailer'
 
 /**
  * Wordlore: Norse Saga. Unlike the shared GamePage, this one is dressed in the
@@ -115,6 +116,16 @@ export function WordlorePage({ game }: { game: Game }) {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* The trailer */}
+        <section className="wl-trailer-section">
+          <div className="mx-auto px-6 md:px-10" style={{ maxWidth: 'var(--maxw)' }}>
+            <Reveal>
+              <p className="wl-eyebrow">The trailer</p>
+              <WordloreTrailer />
+            </Reveal>
           </div>
         </section>
 

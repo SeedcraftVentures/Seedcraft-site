@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
+import { TRAILER_PLAY_EVENT } from './WordloreTrailer'
 
 /**
  * The game's home loop, playing under the Wordlore page.
@@ -84,6 +85,8 @@ export function WordloreMusic() {
     // First interaction anywhere except the toggle itself, which handles its own click.
     const onFirst = (e: Event) => {
       if (button.current?.contains(e.target as Node)) return
+      // Pressing play on the trailer shouldn't start the music it's about to pause
+      if ((e.target as Element | null)?.closest?.('.wl-trailer')) return
       removeFirst()
       start().catch(() => {})
     }
@@ -106,9 +109,18 @@ export function WordloreMusic() {
     }
     document.addEventListener('visibilitychange', onVisibility)
 
+    // The trailer has its own sound: fade the music out (without remembering it as off).
+    const onTrailer = () => {
+      removeFirst()
+      resume = false
+      if (!a.paused) stop()
+    }
+    window.addEventListener(TRAILER_PLAY_EVENT, onTrailer)
+
     return () => {
       removeFirst()
       document.removeEventListener('visibilitychange', onVisibility)
+      window.removeEventListener(TRAILER_PLAY_EVENT, onTrailer)
       if (fadeId.current) clearInterval(fadeId.current)
       a.pause()
       a.src = ''
