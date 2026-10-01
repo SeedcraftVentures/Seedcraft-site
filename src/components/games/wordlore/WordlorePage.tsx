@@ -92,10 +92,9 @@ export function WordlorePage({ game }: { game: Game }) {
                 turn-based duel of dice, runes and words.
               </p>
 
-              <div className="wl-hero__meta">
-                <span className="wl-chip">{game.status.label}</span>
-                <span className="wl-hero__platforms">{game.platforms.join(' · ')}</span>
-              </div>
+              <p className="wl-hero__platforms">
+                {game.status.label} to {game.platforms.join(' and ')}
+              </p>
 
               <Link href={WORDLORE.betaHref} className="wl-btn wl-hero__cta">
                 Join the beta
