@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       { source: '/wordlore', destination: '/games/wordlore', permanent: true },
       { source: '/wordlore/privacy', destination: '/games/wordlore/privacy', permanent: true },
       { source: '/wordlore/support', destination: '/games/wordlore/support', permanent: true },
+      { source: '/wordlore/beta', destination: '/games/wordlore/beta', permanent: true },
     ];
   },
   async rewrites() {

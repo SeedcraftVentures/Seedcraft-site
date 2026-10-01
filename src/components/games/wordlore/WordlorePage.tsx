@@ -97,6 +97,10 @@ export function WordlorePage({ game }: { game: Game }) {
                 <span className="wl-hero__platforms">{game.platforms.join(' · ')}</span>
               </div>
 
+              <Link href={WORDLORE.betaHref} className="wl-btn wl-hero__cta">
+                Join the beta
+              </Link>
+
               {game.storeHref && (
                 <div className="wl-hero__store">
                   <PlayBadge href={game.storeHref} height={80} />

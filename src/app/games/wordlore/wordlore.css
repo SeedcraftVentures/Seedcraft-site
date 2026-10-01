@@ -862,3 +862,131 @@
     display: none;
   }
 }
+
+/* Beta: the hero button and the sign-up form */
+.wl-hero__cta {
+  margin-top: 26px;
+}
+.wl-beta {
+  margin: 30px 0 10px;
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
+  border: 1px solid var(--wl-rule);
+  display: grid;
+  gap: 22px;
+}
+.wl-beta__field {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.wl-beta__field > span,
+.wl-beta__field > legend {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--wl-gold);
+  padding: 0;
+  margin-bottom: 8px;
+}
+.wl-beta input[type='email'] {
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--wl-bone);
+  background: rgba(5, 9, 13, 0.6);
+  border: 1px solid var(--wl-rule);
+  border-radius: 10px;
+  padding: 13px 15px;
+  outline: none;
+}
+.wl-beta input[type='email']:focus {
+  border-color: var(--wl-rune);
+  box-shadow: 0 0 0 3px rgba(150, 220, 241, 0.2);
+}
+.wl-beta__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.wl-beta__choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--wl-rule);
+  color: rgba(239, 232, 218, 0.8);
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.wl-beta__choice input {
+  accent-color: var(--wl-rune);
+}
+.wl-beta__choice.is-on {
+  border-color: var(--wl-rune);
+  color: var(--wl-bone);
+  background: rgba(150, 220, 241, 0.08);
+}
+.wl-beta__consent {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 0.95rem !important;
+  line-height: 1.55;
+  color: rgba(239, 232, 218, 0.75);
+  cursor: pointer;
+}
+.wl-beta__consent input {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--wl-rune);
+  flex: 0 0 auto;
+}
+.wl-beta__submit {
+  justify-self: start;
+  border: 1px solid #8a6419;
+  cursor: pointer;
+}
+.wl-beta__submit:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+.wl-beta__error {
+  margin: 0 !important;
+  color: #f0a08f;
+  font-size: 0.95rem !important;
+}
+.wl-beta__small {
+  margin-top: 16px;
+  font-size: 0.88rem !important;
+  color: var(--wl-muted);
+}
+.wl-beta__done {
+  margin: 30px 0 10px;
+  padding: 36px 28px;
+  border-radius: 14px;
+  text-align: center;
+  background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
+  border: 1px solid rgba(150, 220, 241, 0.3);
+}
+.wl-beta__done-rune {
+  font-family: var(--font-runic), serif;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--wl-rune);
+  text-shadow: 0 0 24px rgba(150, 220, 241, 0.8);
+  margin-bottom: 12px !important;
+}
+.wl-legal .wl-beta__done h2 {
+  margin: 0 0 10px;
+  color: var(--wl-bone);
+}

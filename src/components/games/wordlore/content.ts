@@ -12,6 +12,7 @@ export const WORDLORE = {
   href: '/games/wordlore',
   privacyHref: '/games/wordlore/privacy',
   supportHref: '/games/wordlore/support',
+  betaHref: '/games/wordlore/beta',
 }
 
 export interface Realm {
