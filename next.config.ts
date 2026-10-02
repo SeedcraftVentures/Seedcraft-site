@@ -8,7 +8,9 @@ const nextConfig: NextConfig = {
       { source: '/wordlore', destination: '/games/wordlore', permanent: true },
       { source: '/wordlore/privacy', destination: '/games/wordlore/privacy', permanent: true },
       { source: '/wordlore/support', destination: '/games/wordlore/support', permanent: true },
-      { source: '/wordlore/beta', destination: '/games/wordlore/beta', permanent: true },
+      { source: '/wordlore/ios', destination: '/games/wordlore/ios', permanent: true },
+      { source: '/wordlore/beta', destination: '/games/wordlore/ios', permanent: false },
+      { source: '/games/wordlore/beta', destination: '/games/wordlore/ios', permanent: false },
     ];
   },
   async rewrites() {

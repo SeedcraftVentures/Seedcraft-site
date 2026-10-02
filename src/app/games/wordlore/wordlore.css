@@ -198,12 +198,8 @@
   max-width: 470px;
   margin-bottom: 26px;
 }
-.wl-hero__platforms {
-  font-size: 14px;
-  color: rgba(239, 232, 218, 0.6);
-}
 .wl-hero__store {
-  margin-top: 14px;
+  margin: -12px 0 6px;
 }
 @media (min-width: 920px) {
   .wl-hero__art .wl-frame {
@@ -845,130 +841,121 @@
   }
 }
 
-/* Beta: the hero button and the sign-up form */
-.wl-hero__cta {
-  margin-top: 18px;
+
+/* iOS wishlist: one email field, in the hero and on /games/wordlore/ios */
+.wl-notify {
+  display: grid;
+  gap: 10px;
+  max-width: 470px;
 }
-.wl-beta {
-  margin: 30px 0 10px;
-  padding: 28px;
+.wl-notify--page {
+  margin: 26px 0 28px;
+  padding: 26px;
   border-radius: 14px;
   background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
   border: 1px solid var(--wl-rule);
-  display: grid;
-  gap: 22px;
+  max-width: none;
 }
-.wl-beta__field {
-  display: grid;
-  gap: 8px;
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-.wl-beta__field > span,
-.wl-beta__field > legend {
+.wl-notify__label {
   font-family: var(--font-cinzel), serif;
   font-weight: 700;
   font-size: 13px;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--wl-gold);
-  padding: 0;
-  margin-bottom: 8px;
 }
-.wl-beta input[type='email'] {
+.wl-notify__row {
+  display: flex;
+  gap: 10px;
+}
+.wl-notify input[type='email'] {
+  flex: 1 1 auto;
+  min-width: 0;
   font: inherit;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--wl-bone);
   background: rgba(5, 9, 13, 0.6);
   border: 1px solid var(--wl-rule);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 13px 15px;
   outline: none;
 }
-.wl-beta input[type='email']:focus {
+.wl-notify input[type='email']::placeholder {
+  color: rgba(239, 232, 218, 0.4);
+}
+.wl-notify input[type='email']:focus {
   border-color: var(--wl-rune);
   box-shadow: 0 0 0 3px rgba(150, 220, 241, 0.2);
 }
-.wl-beta__choices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.wl-beta__choice {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--wl-rule);
-  color: rgba(239, 232, 218, 0.8);
-  font-weight: 600;
-  font-size: 0.98rem;
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-}
-.wl-beta__choice input {
-  accent-color: var(--wl-rune);
-}
-.wl-beta__choice.is-on {
-  border-color: var(--wl-rune);
-  color: var(--wl-bone);
-  background: rgba(150, 220, 241, 0.08);
-}
-.wl-beta__consent {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  font-size: 0.95rem !important;
-  line-height: 1.55;
-  color: rgba(239, 232, 218, 0.75);
-  cursor: pointer;
-}
-.wl-beta__consent input {
-  margin-top: 4px;
-  width: 18px;
-  height: 18px;
-  accent-color: var(--wl-rune);
+.wl-notify__submit {
   flex: 0 0 auto;
-}
-.wl-beta__submit {
-  justify-self: start;
-  border: 1px solid #8a6419;
+  padding: 13px 22px 12px;
+  font-size: 14px;
   cursor: pointer;
 }
-.wl-beta__submit:disabled {
-  opacity: 0.45;
+.wl-notify__submit:disabled {
+  opacity: 0.5;
   cursor: default;
   transform: none;
 }
-.wl-beta__error {
-  margin: 0 !important;
-  color: #f0a08f;
-  font-size: 0.95rem !important;
-}
-.wl-beta__small {
-  margin-top: 16px;
-  font-size: 0.88rem !important;
+.wl-notify__small,
+.wl-legal .wl-notify__small {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--wl-muted);
 }
-.wl-beta__done {
-  margin: 30px 0 10px;
-  padding: 36px 28px;
+.wl-notify__small a {
+  color: rgba(239, 232, 218, 0.75);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.wl-notify__error,
+.wl-legal .wl-notify__error {
+  margin: 0;
+  font-size: 14px;
+  color: #f0a08f;
+}
+.wl-notify__done {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 470px;
+  padding: 18px 20px;
   border-radius: 14px;
-  text-align: center;
   background: var(--wl-grain), linear-gradient(180deg, #1c2833, var(--wl-panel));
   border: 1px solid rgba(150, 220, 241, 0.3);
 }
-.wl-beta__done-rune {
+.wl-notify__done.wl-notify--page {
+  margin: 26px 0 28px;
+  max-width: none;
+}
+.wl-notify__done-rune {
   font-family: var(--font-runic), serif;
-  font-size: 46px;
+  font-size: 34px;
   line-height: 1;
   color: var(--wl-rune);
-  text-shadow: 0 0 24px rgba(150, 220, 241, 0.8);
-  margin-bottom: 12px !important;
+  text-shadow: 0 0 20px rgba(150, 220, 241, 0.8);
 }
-.wl-legal .wl-beta__done h2 {
-  margin: 0 0 10px;
+.wl-notify__done p,
+.wl-legal .wl-notify__done p {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(239, 232, 218, 0.75);
+}
+.wl-notify__done .wl-notify__done-title,
+.wl-legal .wl-notify__done .wl-notify__done-title {
+  font-family: var(--font-cinzel), serif;
+  font-weight: 700;
+  font-size: 18px;
   color: var(--wl-bone);
+  margin-bottom: 2px;
+}
+@media (max-width: 480px) {
+  .wl-notify__row {
+    flex-direction: column;
+  }
+  .wl-notify__submit {
+    justify-content: center;
+  }
 }

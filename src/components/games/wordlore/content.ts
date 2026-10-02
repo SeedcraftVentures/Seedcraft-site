@@ -12,7 +12,8 @@ export const WORDLORE = {
   href: '/games/wordlore',
   privacyHref: '/games/wordlore/privacy',
   supportHref: '/games/wordlore/support',
-  betaHref: '/games/wordlore/beta',
+  iosHref: '/games/wordlore/ios',
+  playHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.wordlore',
 }
 
 export interface Realm {

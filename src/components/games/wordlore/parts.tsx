@@ -43,7 +43,7 @@ export function RuneRing({ className = '' }: { className?: string }) {
 }
 
 /** Header for the policy and support pages: the wordmark and the three routes. */
-export function DocHeader({ current }: { current: 'privacy' | 'support' | 'beta' }) {
+export function DocHeader({ current }: { current: 'privacy' | 'support' | 'ios' }) {
   return (
     <header className="wl-dochead">
       <div className="mx-auto px-6 md:px-10 wl-dochead__inner" style={{ maxWidth: 'var(--maxw)' }}>
@@ -58,8 +58,8 @@ export function DocHeader({ current }: { current: 'privacy' | 'support' | 'beta'
         </Link>
         <nav aria-label="Wordlore" className="wl-dochead__links">
           <Link href={WORDLORE.href}>The game</Link>
-          <Link href={WORDLORE.betaHref} aria-current={current === 'beta' ? 'page' : undefined}>
-            Beta
+          <Link href={WORDLORE.iosHref} aria-current={current === 'ios' ? 'page' : undefined}>
+            iOS
           </Link>
           <Link href={WORDLORE.supportHref} aria-current={current === 'support' ? 'page' : undefined}>
             Support

@@ -11,6 +11,7 @@ import { WORDLORE, realms, screens, toRunes } from './content'
 import { Glow, RuneRing } from './parts'
 import { WordloreMusic } from './WordloreMusic'
 import { WordloreTrailer } from './WordloreTrailer'
+import { IosWishlist } from './IosWishlist'
 
 /**
  * Wordlore: Norse Saga. Unlike the shared GamePage, this one is dressed in the
@@ -92,19 +93,13 @@ export function WordlorePage({ game }: { game: Game }) {
                 turn-based duel of dice, runes and words.
               </p>
 
-              <p className="wl-hero__platforms">
-                {game.status.label} to {game.platforms.join(' and ')}
-              </p>
-
-              <Link href={WORDLORE.betaHref} className="wl-btn wl-hero__cta">
-                Join the beta
-              </Link>
-
               {game.storeHref && (
                 <div className="wl-hero__store">
-                  <PlayBadge href={game.storeHref} height={80} />
+                  <PlayBadge href={game.storeHref} height={64} />
                 </div>
               )}
+
+              <IosWishlist variant="hero" />
             </div>
 
             <div className="wl-hero__art">

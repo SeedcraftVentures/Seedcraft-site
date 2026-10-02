@@ -138,7 +138,7 @@ export const games: Game[] = [
       'Every stone is a small crossword written in runes. Roll to learn which rune is which letter, carve letters for points, and read whole words for more. Carve the last letter of a word, though, and your rival can read it first.',
       'The saga runs from Midgard to Helheim across 130 stones, with a patron god to free in every realm, a new Daily Rune puzzle each day, and Barrow Raids against the draugr and the clock.',
     ],
-    status: { label: 'Coming soon', tone: 'soon' },
+    status: { label: 'Out now on Android', tone: 'live' },
     platforms: ['Android', 'iOS'],
     highlights: [
       {
@@ -171,8 +171,7 @@ export const games: Game[] = [
     pageReady: true,
     privacyHref: '/games/wordlore/privacy',
     supportHref: '/games/wordlore/support',
-    // Set when the listing is live:
-    // storeHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.wordlore',
+    storeHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.wordlore',
   },
   {
     slug: 'crossword-hero',
