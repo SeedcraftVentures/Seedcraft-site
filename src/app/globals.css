@@ -2235,6 +2235,16 @@ a.venture-card:hover .venture-card__link {
 .job__list + p {
   margin-top: 14px;
 }
+.job__link {
+  color: var(--f);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--a);
+  text-underline-offset: 3px;
+}
+.job__link:hover {
+  color: var(--a);
+}
 .job__list {
   list-style: none;
   display: grid;

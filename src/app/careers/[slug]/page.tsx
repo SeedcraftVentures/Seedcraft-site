@@ -7,9 +7,27 @@ import { Footer } from '@/components/sections/Footer'
 import { HeatGlow } from '@/components/HeatGlow'
 import { Button } from '@/components/Button'
 import { Mark } from '@/components/Mark'
-import { applyHref, getRole, roles } from '@/lib/careers'
+import { applyHref, getRole, roles, type Para } from '@/lib/careers'
 
 /** One open role, written to be shared on its own: /careers/<slug>. */
+
+/** A paragraph, with any links opening in a new tab so the role stays open. */
+function Paragraph({ p }: { p: Para }) {
+  if (typeof p === 'string') return <p>{p}</p>
+  return (
+    <p>
+      {p.map((seg, i) =>
+        typeof seg === 'string' ? (
+          seg
+        ) : (
+          <a key={i} href={seg.href} target="_blank" rel="noopener noreferrer" className="job__link">
+            {seg.text}
+          </a>
+        ),
+      )}
+    </p>
+  )
+}
 
 export function generateStaticParams() {
   return roles.map((r) => ({ slug: r.slug }))
@@ -63,7 +81,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
               {role.sections.map((s) => (
                 <section key={s.title} className="job__section">
                   <h2 className="font-display job__h2">{s.title}</h2>
-                  {s.intro?.map((p) => <p key={p}>{p}</p>)}
+                  {s.intro?.map((p, i) => <Paragraph key={i} p={p} />)}
                   {s.items && (
                     <ul className="job__list">
                       {s.items.map((it) => (
@@ -74,7 +92,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
                       ))}
                     </ul>
                   )}
-                  {s.outro?.map((p) => <p key={p}>{p}</p>)}
+                  {s.outro?.map((p, i) => <Paragraph key={i} p={p} />)}
                 </section>
               ))}
 

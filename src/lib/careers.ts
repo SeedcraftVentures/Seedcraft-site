@@ -6,13 +6,21 @@
 
 export const CAREERS_EMAIL = 'andre@seedcraft.co'
 
+/** A link inside a paragraph. Opens in a new tab. */
+export interface InlineLink {
+  text: string
+  href: string
+}
+/** Plain text, or text with links in it. */
+export type Para = string | (string | InlineLink)[]
+
 export interface RoleSection {
   title: string
   /** paragraphs before the list */
-  intro?: string[]
+  intro?: Para[]
   items?: string[]
   /** paragraphs after the list */
-  outro?: string[]
+  outro?: Para[]
 }
 
 export interface Role {
@@ -44,22 +52,33 @@ export const roles: Role[] = [
   {
     slug: 'founding-partner',
     title: 'Founding Partner, Go-to-Market',
-    location: 'Central Scotland (Perth, Stirling and Dundee area)',
+    location: 'Central Scotland',
     terms: 'Equity partnership',
     summary:
-      'Own go-to-market across a growing portfolio of B2B and consumer products, starting with Shiftly, which is ready to launch. In person, shoulder to shoulder with the founder.',
+      'Lead go-to-market across a growing portfolio of B2B and consumer products, working side by side with the founder.',
     equity: '25% of the Seedcraft Ventures holding company, earned over two years.',
-    lede: "Seedcraft Ventures is looking for a Founding Partner to own go-to-market across a growing portfolio of B2B and consumer products. It's equity-only and in person, for someone who would rather build something that lasts than chase this week's numbers.",
+    lede: "Seedcraft Ventures is looking for a Founding Partner to own go-to-market across a growing portfolio of B2B and consumer products. It's an equity partnership with a local founder, for someone who would rather build something that lasts than chase this week's numbers.",
     sections: [
       {
         title: 'About Seedcraft',
         intro: [
-          "Seedcraft builds and runs its own portfolio of products. They include Shiftly (shift scheduling for hospitality), What's On, Escapage (creative writing) and a series of mobile word games. We also build apps with partners. Founder Andre leads product and is the public face of the business. The next step is a partner who leads how our products reach people.",
+          [
+            'Seedcraft builds and runs its own portfolio of products. They include ',
+            { text: 'Shiftly', href: 'https://shiftly.so' },
+            ', ',
+            { text: "What's On", href: 'https://showmewhatson.live' },
+            ', ',
+            { text: 'Escapage', href: 'https://www.escapage.ink' },
+            ', ',
+            { text: 'Herald', href: 'https://useherald.app' },
+            ' and a series of mobile word games. We also build apps with partners.',
+          ],
+          'Founder Andre leads product and has started on go-to-market. The next step is a partner who takes the lead on how our products reach people.',
         ],
       },
       {
         title: "What you'll do",
-        intro: ["Roughly 70% go-to-market and 30% product. You'll start with Shiftly, which is ready to launch."],
+        intro: ['Roughly 70% go-to-market and 30% product.'],
         items: [
           'Lead research and user insight: market research, user interviews and collecting data we can trust.',
           'Co-manage field go-to-market with Andre: walk into venues, demo live, set customers up, and sell the product and the vision.',
@@ -70,7 +89,7 @@ export const roles: Role[] = [
           'Support our partner relationships.',
         ],
         outro: [
-          "This is shoulder-to-shoulder work. If we decide university creative writing societies should see Escapage, we'll plan it together and split the visits. One of us takes Stirling, the other takes Dundee.",
+          "This is shoulder-to-shoulder work. If we decide, for example, that university creative writing societies should see Escapage, we'll plan it together and split the visits.",
         ],
       },
       {
