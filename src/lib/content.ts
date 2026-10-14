@@ -17,7 +17,7 @@ export interface VentureStatus {
 }
 
 /** Filter buckets for the ventures grid. Keep in sync with `ventures.filters`. */
-export type Stage = 'live' | 'building' | 'early'
+export type Stage = 'live' | 'building' | 'handed-over'
 
 export interface Venture {
   name: string
@@ -39,8 +39,6 @@ export interface WorkStep {
 
 export const nav = {
   links: [
-    { label: 'Mission', href: '/#mission' },
-    { label: 'How we work', href: '/#how-we-work' },
     { label: 'Ventures', href: '/#ventures' },
     { label: 'Games', href: '/games' },
     { label: 'Build with us', href: '/#build-with-us' },
@@ -164,18 +162,9 @@ export const ventures = {
     { key: 'all', label: 'All' },
     { key: 'live', label: 'Live' },
     { key: 'building', label: 'Building' },
-    { key: 'early', label: 'Early' },
+    { key: 'handed-over', label: 'Handed over' },
   ],
   items: [
-    {
-      name: 'HiddenGem',
-      desc: 'Uncovering remarkable talent.',
-      category: 'Marketplace SaaS',
-      platform: 'Web app',
-      status: { label: 'Launched', tone: 'live' },
-      stage: 'live',
-      href: 'https://www.hiddengem.gg',
-    },
     {
       name: 'Shiftly',
       desc: 'Fair shifts in a couple of clicks.',
@@ -187,11 +176,13 @@ export const ventures = {
     },
     {
       name: 'Smokeless',
-      desc: 'Ritual replacement, giving people control over their cravings.',
+      // Seedcraft's first full Build, Prove, Hand over: Grit Studios, our
+      // partner on it, took on the rights in exchange for a revenue share.
+      desc: 'Ritual replacement, giving people control over their cravings. Now led by our partners at Grit Studios, with Seedcraft keeping a share of its revenue.',
       category: 'Health tech',
       platform: 'Mobile: iOS and Android',
-      status: { label: 'Final push', tone: 'building' },
-      stage: 'building',
+      status: { label: 'Handed over', tone: 'live' },
+      stage: 'handed-over',
       href: 'https://www.gosmokeless.io',
     },
     {
@@ -240,7 +231,7 @@ export const team = {
   members: [
     { src: '/Images/AndreSC.jpg', name: 'Andre Lemaitre', role: 'Founder, Seedcraft Ventures' },
     { src: '/Images/ashley.png', name: 'Ashley Goluoglu', role: 'Founder, Harika Labs, Partner' },
-    { src: '/Images/Gabri.jpg', name: 'Gabriele Aimone', role: 'Founder, Grit Studios, Venture Partner (Smokeless)' },
+    { src: '/Images/Gabri.jpg', name: 'Gabriele Aimone', role: 'Founder, Grit Studios, now leading Smokeless' },
   ] as TeamMember[],
 }
 
@@ -297,7 +288,6 @@ export const footer = {
     {
       title: 'Ventures',
       links: [
-        { label: 'HiddenGem', href: 'https://www.hiddengem.gg' },
         { label: 'Shiftly', href: 'https://shiftly.so' },
         { label: 'Smokeless', href: 'https://www.gosmokeless.io' },
         { label: 'Escapage', href: 'https://www.escapage.ink' },
