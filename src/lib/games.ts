@@ -173,34 +173,6 @@ export const games: Game[] = [
     supportHref: '/games/wordlore/support',
     storeHref: 'https://play.google.com/store/apps/details?id=co.seedcraft.wordlore',
   },
-  {
-    slug: 'crossword-hero',
-    name: 'Crossword Hero',
-    tagline: 'An anagram crossword. Unscramble the letters, fill the grid.',
-    blurb: 'The crossword grid, solved by anagram instead of cryptic clue. In development.',
-    body: [
-      'Crossword Hero is an anagram crossword. Every answer arrives as a jumble of letters, and the grid is what tells you where it belongs. Solve the anagram, place the word, and the crossings hand you the next one.',
-      'It keeps what makes a crossword satisfying, the grid filling in around you, and swaps the barrier for something anyone can start immediately. There is no general knowledge to have and no clue conventions to learn. The letters are all there in front of you.',
-    ],
-    status: { label: 'In development', tone: 'building' },
-    platforms: ['To be confirmed'],
-    highlights: [
-      {
-        title: 'No knowledge barrier',
-        body: 'Cryptic and quick crosswords both gate on what you happen to know. An anagram is solvable by anyone the moment they see it, which opens the format to a far wider audience.',
-      },
-      {
-        title: 'Two puzzles in one',
-        body: 'Each answer is an anagram, and the grid is a crossword. The crossings make the anagrams easier as you go, so difficulty falls away exactly as momentum builds.',
-      },
-      {
-        title: 'A format that never went away',
-        body: 'Crosswords have outlasted every trend in mobile gaming. The demand is proven, the on-ramp is what has always been missing.',
-      },
-    ],
-    shots: [],
-    pageReady: false,
-  },
 ]
 
 export function getGame(slug: string): Game | undefined {
@@ -211,7 +183,7 @@ export const publishers = {
   label: 'For publishers',
   title: 'We are open to publishing conversations.',
   body: [
-    'Seedcraft Games is small, fast and owns its work outright. Tick Down is live on Google Play, Wordlore: Norse Saga launches next, and Crossword Hero is in development behind them.',
+    'Seedcraft Games is small, fast and owns its work outright. Tick Down and Wordlore: Norse Saga are both out on Google Play, and Wordlore comes to iPhone and iPad next.',
     'If you publish short-session titles and want to talk about any of them, or about what we build next, the door is open.',
   ],
   points: [

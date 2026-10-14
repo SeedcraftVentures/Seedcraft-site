@@ -31,19 +31,6 @@ export interface Venture {
   href?: string
 }
 
-/**
- * A seat we are actively recruiting for. These live in Build with us rather
- * than on the venture cards: a badge on a card is too thin a treatment for
- * something that needs the role, the project and the terms spelled out.
- */
-export interface OpenRole {
-  role: string
-  project: string
-  body: string
-  equity: string
-  href: string
-}
-
 export interface WorkStep {
   num: string
   title: string
@@ -52,11 +39,12 @@ export interface WorkStep {
 
 export const nav = {
   links: [
-    { label: 'Mission', href: '#mission' },
-    { label: 'How we work', href: '#how-we-work' },
-    { label: 'Ventures', href: '#ventures' },
+    { label: 'Mission', href: '/#mission' },
+    { label: 'How we work', href: '/#how-we-work' },
+    { label: 'Ventures', href: '/#ventures' },
     { label: 'Games', href: '/games' },
-    { label: 'Build with us', href: '#build-with-us' },
+    { label: 'Build with us', href: '/#build-with-us' },
+    { label: 'Careers', href: '/careers' },
   ] as NavLink[],
   cta: { label: 'Get in touch', href: 'mailto:andre@seedcraft.co' },
 }
@@ -216,21 +204,22 @@ export const ventures = {
       href: 'https://www.escapage.ink',
     },
     {
-      name: 'Vent',
-      desc: 'Turning the complaints of people the market stopped listening to into what gets built next.',
-      category: 'Consumer insight',
-      platform: 'Web and mobile',
-      // no public URL yet
-      status: { label: 'Design phase', tone: 'building' },
-      stage: 'early',
+      name: "What's On",
+      desc: 'Everything happening near you. Found, not missed.',
+      category: 'Local events',
+      platform: 'Web, with apps to follow',
+      status: { label: 'Live in beta', tone: 'live' },
+      stage: 'live',
+      href: 'https://showmewhatson.live',
     },
     {
-      name: 'Kosmos',
-      desc: 'Your universe, on track.',
-      category: 'Productivity',
-      platform: 'Mobile: iOS and Android',
-      status: { label: 'Development', tone: 'building' },
+      name: 'Herald',
+      desc: 'Listen to your messages, don’t look. Herald reads them aloud as they arrive and holds the rest until you are ready.',
+      category: 'Consumer app',
+      platform: 'Android',
+      status: { label: 'In beta', tone: 'building' },
       stage: 'building',
+      href: 'https://useherald.app',
     },
   ] as Venture[],
 }
@@ -269,8 +258,8 @@ export const buildWithUs = {
       key: 'venture',
       title: 'Join a venture',
       body: 'Take a seat on a live venture and own a genuine share of what you build. Defined scope, real equity, no vague promises. You build alongside the studio, not underneath it.',
-      note: 'The seats we are recruiting for right now are listed below.',
-      cta: { label: 'Ask about a seat', href: 'mailto:andre@seedcraft.co?subject=Joining%20a%20Seedcraft%20venture' },
+      note: 'The seats we are recruiting for right now are on our careers page.',
+      cta: { label: 'See open roles', href: '/careers' },
     },
     {
       key: 'partner',
@@ -279,26 +268,6 @@ export const buildWithUs = {
       cta: { label: 'Start a conversation', href: 'mailto:andre@seedcraft.co?subject=Partnering%20with%20Seedcraft' },
     },
   ],
-  roles: {
-    title: 'Who we are looking for right now',
-    sub: 'Named seats on named projects. Every one of these is an equity position, not a contract.',
-    items: [
-      {
-        role: 'Founding Go To Market Lead',
-        project: 'Shiftly',
-        body: 'Shiftly is built and close to launch. This is the person who takes it to market and owns that end of it: first customers, pricing, and the channels that actually move.',
-        equity: 'High project equity, plus options in the studio.',
-        href: 'mailto:andre@seedcraft.co?subject=Founding%20Go%20To%20Market%20Lead,%20Shiftly',
-      },
-      {
-        role: 'Creative Producer (Marketing)',
-        project: 'Seedcraft Games',
-        body: 'Tick Down is live on Google Play, with Crossword Hero behind it. This is the person who builds the audience: store presence, trailers, community, and the campaign around a launch.',
-        equity: 'A mix of project equity and studio options.',
-        href: 'mailto:andre@seedcraft.co?subject=Creative%20Producer,%20Seedcraft%20Games',
-      },
-    ] as OpenRole[],
-  },
 }
 
 /**
@@ -330,10 +299,10 @@ export const footer = {
       links: [
         { label: 'HiddenGem', href: 'https://www.hiddengem.gg' },
         { label: 'Shiftly', href: 'https://shiftly.so' },
-        { label: 'Vent', href: '/#ventures' },
         { label: 'Smokeless', href: 'https://www.gosmokeless.io' },
         { label: 'Escapage', href: 'https://www.escapage.ink' },
-        { label: 'Kosmos', href: '/#ventures' },
+        { label: "What's On", href: 'https://showmewhatson.live' },
+        { label: 'Herald', href: 'https://useherald.app' },
       ],
     },
     {
@@ -341,6 +310,7 @@ export const footer = {
       links: [
         { label: 'Seedcraft Games', href: '/games' },
         { label: 'Tick Down', href: '/games/tick-down' },
+        { label: 'Wordlore: Norse Saga', href: '/games/wordlore' },
         { label: 'For publishers', href: '/games#publishers' },
       ],
     },
@@ -351,6 +321,7 @@ export const footer = {
         { label: 'How we work', href: '/#how-we-work' },
         { label: 'Ventures', href: '/#ventures' },
         { label: 'Build with us', href: '/#build-with-us' },
+        { label: 'Careers', href: '/careers' },
       ],
     },
     {

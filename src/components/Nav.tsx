@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { nav } from '@/lib/content'
 import { Mark } from './Mark'
 import { Button } from './Button'
@@ -44,8 +45,8 @@ export function Nav() {
           padding: '11px 14px 11px 22px',
         }}
       >
-        <a
-          href="#top"
+        <Link
+          href="/"
           style={{ display: 'flex', alignItems: 'center', gap: 9 }}
           aria-label="Seedcraft Ventures, home"
         >
@@ -62,7 +63,7 @@ export function Nav() {
           >
             Seedcraft
           </span>
-        </a>
+        </Link>
 
         <ul className="nav-links max-md:hidden">
           {nav.links.map((l) => (
